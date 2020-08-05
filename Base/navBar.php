@@ -11,288 +11,245 @@ if (realpath("./index.php")) {
         }
     }
 }
-if (!isset($_SESSION)) {
-    session_start();
-}
-include_once $pontos . 'Modelo/Usuario.php';
-include_once $pontos . 'Modelo/Parametros.php';
-include_once $pontos . 'Modelo/Agendamento.php';
-include_once $pontos . 'Controle/agendamentoPDO.php';
-$parametros = new parametros();
-$logado = new usuario(unserialize($_SESSION['logado']));
+//if (!isset($_SESSION)) {
+//    session_start();
+//}
+//include_once $pontos . 'Modelo/Usuario.php';
+//$logado = new usuario(unserialize($_SESSION['logado']));
 ?>
 
-<div class="navbar-fixed" style="max-width: 100%">
-    <nav class="nav-extended white " >
+<style>
+    header, main, footer, .preFooter {
+        padding-left: 245px;
+    }
 
-        <div class="nav-wrapper" style="width: 100%; margin-left: auto; margin-right: auto;">
-            <a href="#" data-target="slide-out" class="sidenav-trigger">
-                <i class="material-icons black-text">menu</i>
-            </a>
-            <?php if ($parametros->getIs_foto() == 1) { ?>
-                <a  href="<?php echo $pontos; ?>./index.php" class="brand-logo">
-                    <img class="responsive-img hide-on-small-only" src="<?php echo $pontos . $parametros->getLogo() . '?' . $numeruzinho; ?>" style="max-height: 60px; height:auto; width: auto; margin-left: 5px;">
-                    <img class="responsive-img hide-on-med-and-up" src="<?php echo $pontos . $parametros->getLogo() . '?' . $numeruzinho; ?>" style="max-height: 55px; height:auto; width: auto; margin-left: 5px;">
+    html{
+        max-width: 100vw;
+    }
+
+    @media only screen and (max-width: 992px){
+        header, main, footer, .preFooter {
+            padding-left: 0px;
+        }
+    }
+
+    nav{
+        background-color: rgba(6, 2, 43, 0.9) !important;
+        transition: ease-in 0.2s;
+    }
+
+    nav:hover{
+        background-color: rgba(6, 2, 43, 0.95) !important;
+    }
+
+    /*!*Muda a cor do icone do select na nav*!*/
+    /*.select-wrapper .caret{*/
+    /*    fill: #fff !important;*/
+    /*}*/
+    /*Muda a cor do que esta escrito dentro do campo selected*/
+    .mudaCor .select-wrapper input.select-dropdown {
+        color: white !important;
+    }
+</style>
+
+<div class="navbar-fixed evitarEstouro" style="max-height: 45px; max-width: 100%">
+    <nav class="nav-extended evitarEstouro" style="max-height: 45px; max-width: 100vw !important">
+
+        <a href="#" data-target="slide-out" class="sidenav-trigger" style="height: 45px;">
+            <i class="material-icons white-text">menu</i>
+        </a>
+        <!--        Tinha um select aqui e eu (Victor Xavier) apaguei-->
+
+        <!--            ul com o a foto e nome de quem esta logado, tambem é um dropdown-->
+        <ul class="right">
+            <li>
+                <a href="#" class='dropdown-trigger black-text iconeFotoNav' data-target='dropPessoal'>
+                    <div class="left-align diviComFotoPerfil fotoPerfil" style="background-image: url('<?php echo $pontos?>Img/Perfil/default.png');">
+                    </div>
                 </a>
-            <?php } else {
-                ?>
-                <a  href="<?php echo $pontos; ?>index.php" class="brand-logo black-text">
-                    <?php echo $parametros->getNome_empresa(); ?>
-                </a> 
-            <?php }
-            ?>
-<!--<a href="<?php // echo $pontos;                          ?>./index.php" class="brand-logo black-text">MarkeyVip</a>-->
-            <ul class="right hide-on-med-and-down">
-                <li>
-                    <a href="#!" class="dropdown-trigger black-text" data-target='dropPessoal'> 
-                        <div class="chip detalheSuave">
-                            <div class="left-align" style="background-image: url('<?php echo ($logado->getIs_foto_url()==1?$logado->getFoto(): $pontos . $logado->getFoto()); ?>');
-                                 float: left;
-                                 margin: 0 8px 0 -12px;
-                                 border-radius: 50%;
-                                 height: 32px; width: 32px;
-                                 background-position: center;
-                                 background-size: cover;
-                                 background-position: center;
-                                 background-repeat: no-repeat;
-                                 object-fit: cover;
-                                 object-position: center;
-                                 ">
-                            </div>
-                            <?php echo $logado->getNome() ?>
-                        </div>
-                    </a>                
-
-
-                    <ul id='dropPessoal' class='dropdown-content'>
-                        <li><a href="<?php echo $pontos ?>Tela/perfil.php" id="linkprestador" class="black-text modal-trigger">Meu Perfil</a></li>
-                        <?php if (isset($_SESSION['prestador'])) {
-                            ?>
-                            <li><a href="<?php echo $pontos; ?>Tela/listagemAgendamento.php" class="black-text">Minha Agenda</a></li>
-
-                            <?php
-                            if ($parametros->getConfirma_agendamento() == 1) {
-                                $agendamentoPDO = new AgendamentoPDO();
-                                echo '<li><a href = "' . $pontos . 'Tela/agendamentosPendentes.php " class = "black-text">Agendamentos Pendentes<span class="new badge" style="background-color: #E25211" data-badge-caption="">' . $agendamentoPDO->agendamentosPendentesN($logado->getId_usuario()) . '</span></a></li>';
-                            }
-                            ?>
-
-                        <?php }
-                        ?>
-                    </ul>
-                </li>
-                <!--Botão de Inicio-->
-                <li>
-                    <a href="<?php echo $pontos; ?>./index.php">
-                        <div class="chip detalheSuave">
-                            <img style="height: 20px; width: 20px; margin-top: 12%" class="" src="<?php echo $pontos ?>Img/Icones/iconeInicio.svg">
-                            Início
-                        </div>
-                    </a>  
-                </li>
-
-                <li>
-                    <a class='dropdown-trigger black-text' href="#!" data-target='dropAdministracao' >
-                        <div class="chip detalheSuave">
-                            Administração
-                        </div>
-                    </a>
-                    <ul id='dropAdministracao' class='dropdown-content'>
-                        <li>
-                            <a href="<?php echo $pontos ?>Tela/listagemUsuario.php" class="black-text">
-                                Clientes
-                            </a>
-                        </li>
-                        <li>
-                            <a href="<?php echo $pontos ?>Tela/cadastroUsuarioAdm.php" class="black-text">
-                                Cadastrar Clientes
-                            </a>
-                        </li>
-                        <li>
-                            <a href="<?php echo $pontos ?>Tela/listaTodosPrestadores.php" class="black-text">
-                                Próximos horários
-                            </a>
-                        </li>
-                        <li><a href="<?php echo $pontos ?>Tela/editarParametros.php" class="black-text">
-                                Configurações do Site
-                            </a>
-                        </li>
-                        <?php
-                        if ($logado->getAdministrador() == 2) {
-                            ?>
-                            <li><a href="<?php echo $pontos ?>Tela/configuracoesAvancadas.php" class="black-text">
-                                    GOD MODE
-                                </a>
-                            </li>
-                            <?php
-                        }
-                        ?>
-                    </ul>
-                </li>
-
-                <li>
-                    <a class='dropdown-trigger black-text' href="#!" data-target='dropfuncionarios' >
-                        <div class="chip detalheSuave">
-                            Parceiros
-                        </div>
-                    </a>
-                    <ul id='dropfuncionarios' class='dropdown-content'>
-                        <li><a href="<?php echo $pontos; ?>Tela/registroPrestador.php" id="linkprestador" class="black-text modal-trigger">Cadastrar</a></li>
-                        <li><a href="<?php echo $pontos; ?>Tela/listagemPrestador.php" class="black-text">Ver Parceiros</a></li>
-                    </ul>
-                </li>
-
-                <li>
-                    <a class='dropdown-trigger black-text' href="#!" data-target='dropservicos' >
-                        <div class="chip detalheSuave">
-                            Serviços
-                        </div>
-                    </a>
-                    <ul id='dropservicos' class='dropdown-content'>
-                        <li><a href="<?php echo $pontos; ?>Tela/registroServico.php" class="black-text modal-trigger">Cadastrar</a></li>
-                        <li><a href="<?php echo $pontos; ?>Tela/listagemServico.php" class="black-text">Ver Serviços</a></li>
-                    </ul>
-                </li>
-
-
-                <li><a class="btSair black-text" href="<?php echo $pontos; ?>Controle/usuarioControle.php?function=logout&url=<?php echo $_SERVER["REQUEST_URI"]; ?>" class="black-text">
-                        <div class="chip detalheSuave " >
+                <!--                    O dropdown referente-->
+                <ul id="dropPessoal" class="dropdown-content">
+                    <li><a href="<?php echo $pontos;?>Tela/perfil.php" class="black-text">Meu perfil</a></li>
+                    <li><a href="<?php echo $pontos;?>Tela/assinaturas.php" class="black-text">Minhas ordens</a></li>
+                    <!--                        li com o divider-->
+                    <li class="divider" tabindex="-1"></li>
+                    <li>
+                        <a class="waves-effect black-text" href="<?php echo $pontos ?>Controle/usuarioControle.php?function=logout">
+                            <i class="material-icons black-text" style="font-size: 1.5rem">power_settings_new</i>
                             Sair
-                        </div>
-                    </a>
-                </li>
-            </ul>
-        </div>
+                        </a>
+                    </li>
+                </ul>
+
+            </li>
+        </ul>
     </nav>
 </div>
-<!--Teste de SidNavBar-->
 
-<ul id="slide-out" class="sidenav">
-    <li><div class="user-view">
-            <div class="background">
-                <img src="<?php echo $pontos; ?>Img/bg1.jpg">
-            </div>
-            <!--<a href="#user"><img class="circle" src="<?php // echo $pontos . $logado->getFoto();                                ?>"></a>-->
-            <a href="#user"><div class="fotoPerfil left-align" style="background-image: url('<?php echo $logado->getIs_foto_url()==1?$logado->getFoto():$pontos . $logado->getFoto(); ?>');background-size: cover;
-                                 background-position: center;
-                                 background-repeat: no-repeat;
-                                 max-height: 20vh; max-width: 20vh;"></div></a>
-            <a href="#name"><span class="white-text name"><?php echo $logado->getNome(); ?></span></a>
-            <a href="#email"><span class="white-text email"><?php echo $logado->getEmail(); ?></span></a>
-        </div></li>
-    <ul class="collapsible">
-        <a href="<?php echo $pontos; ?>./index.php" class="black-text">
+<!--        Btn fixed floating-->
+<!--<div class="fixed-action-btn">-->
+<!--    <a class="btn-floating btn-large corPadrao2 tooltipped animacao z-depth-5" x="0" data-tooltip="Ações">-->
+<!--        <i class="large material-icons giraEmudaCorFloating" style="font-size: 1.5625rem">swap_horiz</i>-->
+<!--    </a>-->
+<!--    <ul>-->
+<!--        <li>-->
+<!--            <a href="--><?php //echo $pontos;?><!--Tela/tela-teste-calendario.php" class="btn-floating yellow tooltipped" data-tooltip="Calendario">-->
+<!--                <i class="material-icons">event</i>-->
+<!--            </a>-->
+<!--        </li>-->
+<!--        <li>-->
+<!--            <a href="--><?php //echo $pontos;?><!--Tela/entrada.php" class="btn-floating corPadrao4 tooltipped" data-tooltip="Regitrar entrada">-->
+<!--                <i class="material-icons">add</i>-->
+<!--            </a>-->
+<!--        </li>-->
+<!--        <li>-->
+<!--            <a href="--><?php //echo $pontos;?><!--Tela/saida.php" class="btn-floating red tooltipped" data-tooltip="Regitrar saida">-->
+<!--                <i class="material-icons">remove</i>-->
+<!--            </a>-->
+<!--        </li>-->
+<!--    </ul>-->
+<!--</div>-->
+
+<!--SidNavBar que deve se tornar padrão-->
+
+<ul id="slide-out" class="sidenav sidenav-fixed">
+    <li>
+        <div style="background-color: #06022B; max-height: 45px;">
+<!--            <img class="iconAlvo" src="--><?php //echo $pontos ?><!--Img/Financeiramente-04-ALVO.svg">-->
+            <span style="margin-left: 10px; font-size: 20px; color: white;">Ordens</b></span>
+        </div>
+    </li>
+    <li class="no-padding">
+        <ul class="collapsible">
             <li>
-                <div class="headerMeu" style="margin-left: 16px">
-                    Início
-                </div>
+                <a class="waves-effect black-text collapsible-header anime" x="0" href="<?php echo $pontos ?>index.php">
+                    <i class="material-icons changeColor" style="color: black; font-size: 1.5rem">home</i>
+                    Inicio
+                </a>
             </li>
-        </a>
-        <li>
-            <div class="collapsible-header anime" x="0">Meu Perfil<i class="large material-icons right animi">arrow_drop_down</i></div>
-            <div class="collapsible-body">
-                <ul class="grey lighten-2">
-                    <li><a href="<?php echo $pontos ?>Tela/perfil.php" id="linkprestador" class="black-text modal-trigger">Ver Meu Perfil</a></li>
-                    <?php if (isset($_SESSION['prestador'])) {
-                        ?>
-                        <li><a href="<?php echo $pontos; ?>Tela/listagemAgendamento.php" class="black-text">Minha Agenda</a></li>
 
-                        <?php
-                        if ($parametros->getConfirma_agendamento() == 1) {
-                            $agendamentoPDO = new AgendamentoPDO();
-                            echo '<li><a href = "' . $pontos . 'Tela/agendamentosPendentes.php " class = "black-text">Agendamentos Pendentes<span class="new badge" style="background-color: #E25211" data-badge-caption="">' . $agendamentoPDO->agendamentosPendentesN($logado->getId_usuario()) . '</span></a></li>';
-                        }
-                        ?>
+            <li>
+                <a class="waves-effect black-text collapsible-header anime" x="0" href="#!">
+                    <i class="material-icons changeColor" style="color: black; font-size: 1.5rem">supervisor_account</i>
+                    Administração
+                    <i class="large material-icons right animi black-text">arrow_drop_down</i>
+                </a>
 
-                    <?php }
-                    ?>
-                </ul>
-            </div>
-        </li>
-        <li>
-            <div class="collapsible-header anime" x="0">Administração<i class="large material-icons right animi">arrow_drop_down</i></div>
-            <div class="collapsible-body">
-                <ul class="grey lighten-2">
-                    <li>
-                        <a href="<?php echo $pontos ?>Tela/listagemUsuario.php" class="black-text">
-                            Ver Clientes
-                        </a>
-                    </li>
-                    <li>
-                        <a href="<?php echo $pontos ?>Tela/cadastroUsuarioAdm.php" class="black-text">
-                            Cadastrar Clientes
-                        </a>
-                    </li>
-                    <li>
-                        <a href="<?php echo $pontos ?>Tela/listaTodosPrestadores.php" class="black-text">
-                            Próximos horários
-                        </a>
-                    </li>
-                    <li>
-                        <a href="<?php echo $pontos ?>Tela/editarParametros.php" class="black-text">
-                            Configurações do Site
-                        </a>
-                    </li>
-                    <?php
-                    if ($logado->getAdministrador() == 2) {
-                        ?>
+                <div class="collapsible-body bodyColorCollapsible">
+                    <ul>
                         <li>
-                            <a href="<?php echo $pontos ?>Tela/configuracoesAvancadas.php" class="black-text">
-                                GOD MODE
+                            <a href="<?php echo $pontos . 'Tela/listagemUsuario.php' ?>">
+                                <i class="material-icons icons-internos">arrow_right</i>
+                                Usuários
                             </a>
-                        </li> 
-                        <?php
-                    }
-                    ?>
-                </ul>
-            </div>
-        </li>
-        <li>
-            <div class="collapsible-header anime" x="0">Parceiros<i class="large material-icons right animi">arrow_drop_down</i></div>
-            <div class="collapsible-body">
-                <ul class="grey lighten-2">
-                    <li><a href="<?php echo $pontos; ?>Tela/registroPrestador.php" id="linkprestador" class="black-text modal-trigger">Cadastrar</a></li>
-                    <li><a href="<?php echo $pontos; ?>Tela/listagemPrestador.php" class="black-text">Ver Parceiros</a></li>
-                </ul>
-            </div>
-        </li>
-        <li>
-            <div class="collapsible-header anime" x="0">Serviços<i class="large material-icons right animi">arrow_drop_down</i></div>
-            <div class="collapsible-body">
-                <ul class="grey lighten-2">
-                    <li><a href="<?php echo $pontos; ?>Tela/registroServico.php" class="black-text modal-trigger">Cadastrar</a></li>
-                    <li><a href="<?php echo $pontos; ?>Tela/listagemServico.php" class="black-text">Ver Serviços</a></li>
-                </ul>
-            </div>
-        </li>
-        <a class="modal-trigger black-text" href="#modalSair">
-            <li>
-                <div class="headerMeu black-text" style="margin-left: 16px">
-                    Sair
+                        </li>
+                        <li class="divider" style="margin-top: 0px;" tabindex="-1"></li>
+                    </ul>
                 </div>
             </li>
-        </a>
 
-        <?php
-        if ($logado->getAdministrador() == 2) {
-            ?>
-            <a class="toatsURI" href="#!" class="black-text">
-                <li>
-                    <div class="headerMeu black-text" style="margin-left: 16px">
-                        Toast URI
-                    </div>
-                </li>
-            </a>
-            <a href="#!" onclick="location.reload();" class="black-text">
-                <li>
-                    <div class="headerMeu black-text" style="margin-left: 16px">
-                        Reload
-                    </div>
-                </li>
-            </a>
-        <?php } ?>
-    </ul>
+            <li>
+                <a class="waves-effect black-text collapsible-header anime" x="0" href="#!">
+                    <i class="material-icons changeColor" style="color: black; font-size: 1.5rem">library_add</i>
+                    Cadastro
+                    <i class="large material-icons right animi black-text">arrow_drop_down</i>
+                </a>
+                <div class="collapsible-body bodyColorCollapsible">
+                    <ul>
+                        <li>
+                            <a href="<?php echo $pontos . 'Tela/registroMeioRecebimento.php' ?>">
+                                <i class="material-icons icons-internos">arrow_right</i>
+                                Usuário
+                            </a>
+                        </li>
+                        <li>
+                            <a href="<?php echo $pontos . 'Tela/listagemMeioRecebimento.php' ?>">
+                                <i class="material-icons icons-internos">arrow_right</i>
+                                Registro
+                            </a>
+                        </li>
+                        <li>
+                            <a href="<?php echo $pontos . 'Tela/listagemMeioRecebimento.php' ?>">
+                                <i class="material-icons icons-internos">arrow_right</i>
+                                Ordem
+                            </a>
+                        </li>
+                        <li class="divider" style="margin-top: 0px;" tabindex="-1"></li>
+                    </ul>
+                </div>
+            </li>
+
+            <!--para listagem-->
+            <li>
+                <a class="waves-effect black-text collapsible-header anime" x="0" href="#!">
+                    <i class="material-icons changeColor" style="color: black; font-size: 1.5rem">list</i>
+                    Listar
+                    <i class="large material-icons right animi black-text">arrow_drop_down</i>
+                </a>
+                <div class="collapsible-body bodyColorCollapsible">
+                    <ul>
+                        <li>
+                            <a href="<?php echo $pontos . 'Tela/registroPessoa.php' ?>">
+                                <i class="material-icons icons-internos">arrow_right</i>
+                                Usuário
+                            </a>
+                        </li>
+                        <li>
+                            <a href="<?php echo $pontos . 'Tela/registroEmpresa.php' ?>">
+                                <i class="material-icons icons-internos">arrow_right</i>
+                                Registro
+                            </a>
+                        </li>
+                        <li>
+                            <a href="<?php echo $pontos . 'Tela/registroProjeto.php' ?>">
+                                <i class="material-icons icons-internos">arrow_right</i>
+                                Ordem
+                            </a>
+                        </li>
+                        <li class="divider" style="margin-top: 0px;" tabindex="-1"></li>
+                    </ul>
+                </div>
+            </li>
+
+            <li>
+                <a class="waves-effect black-text collapsible-header anime" x="0" href="#!">
+                    <i class="material-icons giraEmudaCor" style="color: black; font-size: 1.5rem">settings</i>
+                    Configurações
+                </a>
+            </li>
+            <!--    Essa li abrange a fução de collapsible, é importante ter a função em java scrit para fazer a seta girar e da classe-->
+            <!--    animi (na folha css), anime e a propriedade "x"-->
+
+            <li>
+                <a class="waves-effect black-text collapsible-header anime" x="0" href="#!">
+                    <i class="material-icons changeColor" style="color: black; font-size: 1.5rem">help_outline</i>
+                    Sobre
+                    <i class="large material-icons right animi black-text">arrow_drop_down</i>
+                </a>
+
+                <div class="collapsible-body bodyColorCollapsible">
+                    <ul style="margin-left: 10px">
+                        <li style="height: 25px; line-height: 25px" >Projeto começado</li>
+                        <li style="height: 25px; line-height: 25px">dia 05/08/2020</li>
+                    </ul>
+                </div>
+            </li>
+        </ul>
+    </li>
+    <li>
+        <div class="divider"></div>
+    </li>
+
+    <!-- <li><a class="subheader">Financeiramente todos os direitos reservados © 2020 FinanceirameneApp</a></li>-->
+    <li class="linhaDobtSair hide">
+        <a class="waves-effect black-text" href="<?php echo $pontos ?>Controle/usuarioControle.php?function=logout">
+            <i class="material-icons black-text" style="font-size: 1.5rem">power_settings_new</i>
+            Sair
+        </a>
+    </li>
+
 </ul>
+
 
 <div id="modalSair" class="modal">
     <div class="modal-content">
@@ -315,21 +272,30 @@ $logado = new usuario(unserialize($_SESSION['logado']));
         coverTrigger: false
     });
 
-//      $(".anime").each(function (){
-//        if ($(this).attr("x") == 1) {
-//            $(this).children($(".animi")).attr("style", "transform: rotate(180deg);");
-//        }
-//        
-//    });
+    $(".anime").each(function () {
+        if ($(this).attr("x") == 1) {
+            $(this).children(".animi").attr("style", "transform: rotate(180deg); color: black;");
+            $(this).children(".giraEmudaCor").attr("style", "color: #0F8F00; font-size: 1.5rem; transform: rotate(180deg);");
+            $(this).children(".changeColor").attr("style", "color: black; font-size: 1.5rem");
+        }
+
+    });
 
     $(".anime").click(function () {
         if ($(this).attr("x") == 0) {
             $(".anime").attr("x", "0");
-            $(".animi").attr("style", "transform: rotate(0deg);");
-            $(this).children($(".animi")).attr("style", "transform: rotate(180deg);");
+            $(".animi").attr("style", "transform: rotate(0deg); color: black;");
+            $(".changeColor").attr("style", "color: black; font-size: 1.5rem;");
+            $(".giraEmudaCor").attr("style", "color: black; font-size: 1.5rem; transform: rotate(0deg);");
+
+            $(this).children(".changeColor").attr("style", "color: #0F8F00; font-size: 1.5rem");
+            $(this).children(".giraEmudaCor").attr("style", "color: #0F8F00; font-size: 1.6rem; transform: rotate(180deg);");
+            $(this).children(".animi").attr("style", "transform: rotate(180deg);");
             $(this).attr("x", "1");
         } else {
-            $(this).children($(".animi")).attr("style", "transform: rotate(0deg);");
+            $(this).children(".giraEmudaCor").attr("style", "color: black; font-size: 1.5rem; transform: rotate(0deg);");
+            $(this).children(".changeColor").attr("style", "color: black; font-size: 1.5rem");
+            $(this).children(".animi").attr("style", "transform: rotate(0deg); color: black;");
             $(this).attr("x", "0");
         }
     });

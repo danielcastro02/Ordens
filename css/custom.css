@@ -2,7 +2,9 @@
     --corPadrao2: #1D345C;
 }
 
-
+nav.nav-extended {
+    height: 45px !important;
+}
 footer {
     bottom: 0;
     width: 100%;
@@ -10,6 +12,11 @@ footer {
     padding-bottom: 3px;
     z-index: 500;
 
+}
+
+p {
+    /*wtfk quem fez isso aqui???*/
+    /*text-transform: capitalize;*/
 }
 
 .fotoPerfil {
@@ -127,6 +134,7 @@ body {
 
 main {
     flex: 1 0 auto;
+    min-height: 80vh;
 }
 
 ::-webkit-scrollbar {
@@ -159,24 +167,32 @@ main {
 
 .corPadrao2 {
     /*Azul Escuro*/
-    background: #1D345C !important;
+    background: #06022B !important;
 }
 
 .corPadrao3 {
     /*Laranja*/
-    background: #E25211 !important;
+    background: #DB6A21 !important;
+}
+
+.corPadrao4{
+    /*Verde*/
+    background: #0F8F00 !important;
 }
 
 .textoCorPadrao2 {
-    color: #1D345C;
-    font-weight: bold;
+    color: #06022B;
 
 }
 
 .textoCorPadrao3 {
-    color: #E25211;
+    color: #DB6A21;
     font-weight: bold;
     cursor: default;
+}
+
+.textoCorPadrao4{
+    color: #0F8F00;
 }
 
 .right-divider {
@@ -203,12 +219,15 @@ main {
     vertical-align: bottom;
 }
 
-.animi {
-    transition: ease-in 0.15s;
+.animi,
+.giraEmudaCor,
+.giraEmudaCorFloating{
+    transition: ease-in 0.2s;
+    user-select: none;
 }
 
 .bot:hover .bota {
-    color: #E25211;
+    color: #DB6A21;
 }
 
 .bold {
@@ -216,10 +235,12 @@ main {
 }
 
 .detalheSuave {
+    border-radius: 50%;
+    max-width: 32px;
+    max-height: 32px;
     background-color: #f5f5f5;
     -webkit-box-shadow: 0 3px 3px 0 rgba(0, 0, 0, 0.14), 0 1px 7px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -1px rgba(0, 0, 0, 0.2);
     box-shadow: 0 3px 3px 0 rgba(0, 0, 0, 0.14), 0 1px 7px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -1px rgba(0, 0, 0, 0.2);
-
 }
 
 /*deixar as imagens com o mesmo tamanho*/
@@ -265,6 +286,7 @@ main {
     overflow: auto;
     height: 94%;
 }
+
 .headChatBox {
     height: 35px;
     background-color: var(--corPadrao2);
@@ -274,16 +296,17 @@ main {
     min-height: 5px;
     padding: 2.5px;
 }
+
 .bodyChatBox {
     overflow: auto;
     height: calc(86% - 35px);
 }
 
-.openChat{
+.openChat {
     display: block !important;
 }
 
-.chatBox{
+.chatBox {
     position: fixed;
     bottom: 0;
     right: 5px;
@@ -296,17 +319,357 @@ main {
     border-radius: 25px 25px 0px 0px;
     z-index: 500;
 }
-.messageChat{
+
+.messageChat {
     line-height: 15px;
 }
-.inputChat{
+
+.inputChat {
     height: 14%;
 }
 
- /*Deixa o toast no canto inferior esquerdo*/
- /*  #toast-container {*/
- /*      top: auto !important;*/
- /*      right: auto !important;*/
- /*      bottom: 10%;*/
- /*      left:7%;*/
- /*  }*/
+/*Para mexer no sidenav*/
+nav {
+    background-color: #06022B !important;
+}
+
+nav .sidenav-trigger i {
+    height: 45px !important;
+    line-height: 45px !important;
+}
+
+.sidenav {
+    /*background-color: rgba(120, 160, 187, 1);*/
+    width: 245px !important;
+    transition: ease-in 0.2s;
+}
+
+.sidenav li > a {
+    padding: 0 20px !important;
+}
+
+.sidenav li > a > i.material-icons {
+    margin: 0 20px 0 0 !important;
+}
+
+/*para deixar a sidNav empurrando o restante do html para a direita quando em fullscren*/
+
+
+@media only screen and (max-width: 992px) {
+    header, main, footer {
+        padding-left: 0;
+    !important;
+    }
+}
+
+/* Mudar propriedas da class chip */
+.chip {
+    display: inline-block;
+    height: 35px !important;
+    font-size: 13px;
+    font-weight: bold !important;
+    color: rgba(255, 255, 255, 1) !important;
+    line-height: 35px !important;
+    padding: 0 18px !important;
+    border-radius: 16px;
+    margin-bottom: 5px;
+    margin-right: 5px;
+}
+
+@media only screen and (max-width: 600px) {
+    .chip {
+        height: 32px !important;
+        line-height: 32px !important;
+    }
+}
+
+.chip:focus {
+    outline: none;
+    background-color: #26a69a;
+    color: #fff;
+}
+
+/*Mantem o botão sair fixo na parte de baixo*/
+.linhaDobtSair {
+    /*margin-top: 0px;*/
+    position: fixed;
+    bottom: 65px;
+    width: 100%
+}
+
+
+/*Muda a cor do icone do select na nav*/
+#ulAesquerda .input-field .select-wrapper .caret{
+    fill: #fff !important;
+}
+/*Muda a cor do que esta escrito dentro do campo selected*/
+#ulAesquerda .input-field .select-wrapper input.select-dropdown {
+    color: white !important;
+}
+
+/*Faz o campo do select ter uma margim quando em telas maiores de 992px e voltar a 0px igual ou menor que isso*/
+#ulAesquerda{
+    margin-left: 260px;
+}
+
+@media only screen and (max-width: 992px) {
+    #ulAesquerda{
+        margin-left: 10px;
+    }
+}
+
+/*ajusta o tamnho do input-field*/
+.input-field-ajustes{
+    width: 250px;
+    height: 45px;
+}
+
+@media only screen and (max-width: 530px){
+    .input-field-ajustes{
+        width: 200px;
+    }
+}
+
+@media only screen and (max-width: 485px){
+    .input-field-ajustes{
+        width: 160px;
+    }
+}
+
+@media only screen and (max-width: 438px){
+    .input-field-ajustes{
+        width: 140px;
+    }
+}
+
+@media only screen and (max-width: 420px){
+    .input-field-ajustes{
+        width: 120px;
+    }
+}
+
+@media only screen and (max-width: 360px){
+    .input-field-ajustes{
+        width: 100px;
+    }
+
+    .mostrarSaldo{
+        font-size: 1.2rem !important;
+    }
+}
+/*Muda as propriedades do dropdown que esta na navbar com a foto de perfil*/
+
+.iconeFotoNav{
+    background-color: whitesmoke;
+    margin: 4px 20px 0 0;
+    height: 37px;
+    width: 37px;
+    border-radius: 50%;
+    border-width: 1px;
+    border-color: #06022B;
+    border-style: solid;
+}
+
+@media only screen and (max-width: 560px){
+    .iconeFotoNav{
+        margin-right: 4px;
+    }
+}
+
+/*linha com o saldo*/
+.mostrarSaldo{
+    line-height: 45px;
+    height: 45px;
+    margin-left: 8px;
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.iconeFotoNav:hover{
+    background-color: rgba(219, 106, 33, 0.95) !important;
+}
+
+.diviComFotoPerfil{
+    float: left;
+    margin: 0 8px 0 -15px;
+    border-radius: 50%;
+    height: 35px; width: 35px;
+    background-position: center;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    object-fit: cover;
+    object-position: center;
+}
+
+/*Aqui muda a largura que o dropdown da foto de perfil tera*/
+#dropPessoal{
+    min-width: 200px !important;
+}
+/*Classe que evita o estouro de elementos e corrige eles para o tamnho da tela*/
+
+.evitarEstouro{
+    width: 100vw;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+
+/*Ajusta as margens dos icones que estam dentro da sidnav alinhados a direita*/
+.sidenav li > a > i.material-icons.right {
+    margin-right: 0px !important;
+}
+/*Ajusta as margins dos icones que estam dentro da sidnav alinhados a esquerda*/
+.sidenav li > a > i.material-icons {
+    margin: 0 15px 0 -10px !important;
+}
+/*Ajusta as margens dos icones dentro do colabiseble na sidnav*/
+.sidenav li > a > i.material-icons.icons-internos{
+    margin-left: 8px !important;
+}
+
+/*Faz os ajustes no icone de alvo que esta na sidNav*/
+.iconAlvo{
+    user-select: none;
+    float: left;
+    max-width: 250px;
+    max-height: 45px;
+    margin-left: 8px;
+    color: white
+}
+
+.fc .fc-daygrid-event-harness{
+    cursor: pointer;
+}
+
+.modalVerDetalhes{
+    display: block;
+}
+
+.modalEditar{
+    display: none;
+}
+
+/*Mexando mo footer*/
+.iconsFooter {
+    margin-left: 3px;
+    margin-right: 3px;
+    float: left;
+    height: 1.7rem;
+    line-height: inherit;
+    font-size: 1.7rem;
+}
+
+/*Icone de olho no campo de senha*/
+.iconeOlho{
+    z-index: 997 !important;
+    margin-left: -25px !important;
+    margin-top: 13px !important;
+    position: relative !important;
+    cursor: pointer !important;
+    user-select: none !important;
+}
+
+
+/*Meu container personalizado*/
+
+.containerMeu{
+    margin: 0 auto;
+    max-width: 1280px;
+    width: 95%;
+}
+
+@media only screen and (min-width: 601px) {
+    .containerMeu{
+        width: 100%;
+    }
+}
+
+/*Item que fica na listagem de usuario*/
+
+.itemListUsuario{
+    float: right;
+    background-color: #F0F0F7;
+    position: absolute;
+    border-radius: 10%;
+    padding: 4px;
+    transition: background-color 0.2s;
+}
+
+.itemListUsuario:hover{
+    background-color: #e0e0ef;
+}
+
+/*Primero e segundo icone na listagem*/
+.primeiroItem{
+    top: 16px;
+    right: 70px;
+}
+
+.primeiroItem i, .segundoItem i{
+    font-size: 40px;
+    display: flex;
+}
+
+.segundoItem{
+    top: 16px;
+    right: 16px;
+}
+
+@media only screen and (max-width: 530px){
+    .primeiroItem i, .segundoItem i{
+        font-size: 30px;
+    }
+
+    .itemListUsuario{
+        padding: 2px;
+    }
+
+    .primeiroItem{
+        top: 6px;
+        right: 9px;
+    }
+
+    .segundoItem{
+        top: 45px;
+        right: 9px;
+    }
+}
+
+/*Linha que faz o link para cadastrar nova pessoa quando não tem niguem cadastrado*/
+
+.btnAdicionarPessoa{
+    line-height: 32px;
+    height: 32px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 6px;
+    border-radius: 3%;
+    margin-left: 10%;
+    width: 80%;
+    background-color: #F0F0F7
+}
+
+.btnAdicionarPessoa:hover{
+    background-color: #e0e0ef;
+    transition: background-color 0.2s;
+}
+
+/*Item no collection avatar*/
+.collection .collection-item.avatar {
+    padding-left: 66px !important;
+}
+
+/*.sidenav .bodyColorCollapsible{*/
+/*    background-color: rgba(96, 122, 174, 0.2) !important;*/
+/*}*/
+
+/**/
+/*Deixa o toast no canto inferior esquerdo*/
+/*  #toast-container {*/
+/*      top: auto !important;*/
+/*      right: auto !important;*/
+/*      bottom: 10%;*/
+/*      left:7%;*/
+/*  }*/
