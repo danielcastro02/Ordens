@@ -86,6 +86,9 @@ class UsuarioPDO extends PDOBase{
         $stmt->execute();
         if($stmt->rowCount()>0){
             $usuario = new usuario($stmt->fetch());
+            if(!isset($_SESSION)){
+                session_start();
+            }
             $_SESSION['logado'] = serialize($usuario);
             header('location: ../index.php');
         }else{
