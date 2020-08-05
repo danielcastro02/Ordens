@@ -2,6 +2,8 @@
 
     include_once __DIR__ . '/../Controle/conexao.php';
     include_once __DIR__ . '/../Modelo/Cliente.php';
+    include_once __DIR__ . '/../Controle/OrdemPDO.php';
+    include_once __DIR__ . '/../Modelo/Ordem.php';
     include_once __DIR__ . '/PDOBase.php';
 
 class ClientePDO extends PDOBase{
@@ -71,5 +73,18 @@ class ClientePDO extends PDOBase{
         header('location: ../Tela/listarCliente.php');
     }
 
+    public function selectIdOrdem($id_cliente)
+    {
+        $pdo = Conexao::getConexao();
+        $stmt = $pdo->prepare('select * from cliente where id_cliente = :id_cliente');
+        $stmt->bindValue(':id_cliente', $id_cliente);
+        if ($stmt->execute()) {
+            return $stmt;
+        } else {
+            return false;
+        }
+    }
 
-/*chave*/}
+
+
+    /*chave*/}

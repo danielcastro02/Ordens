@@ -75,13 +75,13 @@ $data = new DateTime();
 </script>
 <input id="malditosPontos" value="<?php echo $pontos ?>" hidden/>
 <?php
-if (isset($_SESSION)) {
-    if (isset($_SESSION['logado'])) {
-        if ($parametros->getActiveChat() == 1) {
-            include_once __DIR__ . "/chat2.php";
-        }
-    }
-}
+//if (isset($_SESSION)) {
+//    if (isset($_SESSION['logado'])) {
+//        if ($parametros->getActiveChat() == 1) {
+//            include_once __DIR__ . "/chat2.php";
+//        }
+//    }
+//}
 ?>
 
 <div id="testeDeNotifcacao" style="display: none"></div>
