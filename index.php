@@ -2,6 +2,7 @@
 if (!isset($_SESSION)) {
     session_start();
 }
+include_once '../Base/requerLogin.php';
 ?>
 <!DOCTYPE html>
 
@@ -16,7 +17,7 @@ if (!isset($_SESSION)) {
     <title>Ordens</title>
 <body class="homeimg">
 <?php
-include_once './Base/iNav.php';
+include_once './Base/iNav.php';x
 ?>
 <main>
 
