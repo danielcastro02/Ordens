@@ -19,6 +19,10 @@ if (realpath("./index.php")) {
 ?>
 
 <style>
+    nav.nav-extended {
+        height: 45px !important;
+    }
+
     header, main, footer, .preFooter {
         padding-left: 245px;
     }
