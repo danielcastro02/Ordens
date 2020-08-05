@@ -7,6 +7,8 @@ private $nome;
 private $tefone;
 private $is_wats;
 private $STATUS;
+const ST_EMDIA = 0;
+const ST_DEVENDO = 1;
 
 
 public function __construct() {
