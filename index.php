@@ -16,7 +16,7 @@ if (!isset($_SESSION)) {
     <title>Ordens</title>
 <body class="homeimg">
 <?php
-include_once './Base/navBar.php';
+include_once './Base/iNav.php';
 ?>
 <main>
 
