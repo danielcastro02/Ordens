@@ -6,7 +6,7 @@
 
 class OrdemPDO extends PDOBase{
     /*inserir*/
-    function inserirOrdem() {
+    function inserir() {
         $ordem = new ordem($_POST);
         $pdo = conexao::getConexao();
         $stmt = $pdo->prepare('insert into ordem values(default , :id_cliente , :equipamento , :descricao , :status , :data_chegada , :data_entrega , :data_pagamento , :valor);' );

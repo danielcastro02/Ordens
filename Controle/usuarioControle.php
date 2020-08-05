@@ -1,6 +1,6 @@
 <?php
 
-include_once __DIR__ . '/Controle/usuarioPDO.php';
+include_once __DIR__ . '/../Controle/usuarioPDO.php';
 
 $classe = new usuarioPDO();
 

@@ -22,7 +22,7 @@ include_once '../Base/navBar.php';
         <div class="col s12 m10 l8 offset-l2 offset-m1 card">
             <div class="row">
                 <div class="col s12">
-                    <form action="../clienteControle.php?function=inserir" method="post">
+                    <form action="../Controle/clienteControle.php?function=inserir" method="post">
                         <div class="row">
                             <div class="input-field col s4">
                                 <input name="nome" id="nome" type="text">
@@ -45,6 +45,10 @@ include_once '../Base/navBar.php';
                                     </label>
                                 </div>
                             </div>
+                        </div>
+                        <div class="row center">
+                            <a class="btn corPadrao3" href="../index.php">Voltar</a>
+                            <button type="submit" class="btn corPadrao2">Confirmar</button>
                         </div>
                     </form>
                 </div>

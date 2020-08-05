@@ -6,7 +6,7 @@
 
 class ComentarioPDO extends PDOBase{
     /*inserir*/
-    function inserirComentario() {
+    function inserir() {
         $comentario = new comentario($_POST);
         $pdo = conexao::getConexao();
         $stmt = $pdo->prepare('insert into comentario values(default , :id_ordem , :id_usuario , :comentario , :hora);' );

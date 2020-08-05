@@ -6,13 +6,11 @@
 
 class ClientePDO extends PDOBase{
     /*inserir*/
-    function inserirCliente() {
+    function inserir() {
         $cliente = new cliente($_POST);
-        $pdo = $conexao::getConexao();
-        $stmt = $pdo->prepare('insert into cliente values(:id_cliente , :nome , :tefone , :is_wats , :STATUS);' );
+        $pdo = conexao::getConexao();
+        $stmt = $pdo->prepare('insert into cliente values(default , :nome , :tefone , :is_wats , 0);' );
 
-        $stmt->bindValue(':id_cliente', $cliente->getId_cliente());    
-        
         $stmt->bindValue(':nome', $cliente->getNome());    
         
         $stmt->bindValue(':tefone', $cliente->getTefone());    
@@ -34,7 +32,7 @@ class ClientePDO extends PDOBase{
 
     public function selectCliente(){
         $pdo = conexao::getConexao();
-        $stmt = $pdo->prepare('select * from cliente ;');
+        $stmt = $pdo->prepare('select * from cliente order by nome;');
         $stmt->execute();
         if ($stmt->rowCount() > 0) {
             return $stmt;
