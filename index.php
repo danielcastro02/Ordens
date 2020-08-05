@@ -13,7 +13,7 @@ if (!isset($_SESSION)) {
     <?php
     include_once './Base/header.php';
     ?>
-    <title></title>
+    <title>Ordens</title>
 <body class="homeimg">
 <?php
 include_once './Base/navBar.php';
