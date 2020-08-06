@@ -169,13 +169,13 @@ if (realpath("./index.php")) {
                         <li>
                             <a href="<?php echo $pontos . 'Tela/listagemMeioRecebimento.php' ?>">
                                 <i class="material-icons icons-internos">arrow_right</i>
-                                Registro
+                                Ordem
                             </a>
                         </li>
                         <li>
-                            <a href="<?php echo $pontos . 'Tela/listagemMeioRecebimento.php' ?>">
+                            <a href="<?php echo $pontos . 'Tela/registroUsuario.php' ?>">
                                 <i class="material-icons icons-internos">arrow_right</i>
-                                Ordem
+                                Usuario
                             </a>
                         </li>
                         <li class="divider" style="margin-top: 0px;" tabindex="-1"></li>
@@ -193,21 +193,21 @@ if (realpath("./index.php")) {
                 <div class="collapsible-body bodyColorCollapsible">
                     <ul>
                         <li>
-                            <a href="<?php echo $pontos . 'Tela/listarClientes.php' ?>">
+                            <a href="<?php echo $pontos . 'Tela/listarCliente.php' ?>">
                                 <i class="material-icons icons-internos">arrow_right</i>
                                 Cliente
-                            </a>
-                        </li>
-                        <li>
-                            <a href="<?php echo $pontos . 'Tela/listarRegistro.php' ?>">
-                                <i class="material-icons icons-internos">arrow_right</i>
-                                Registro
                             </a>
                         </li>
                         <li>
                             <a href="<?php echo $pontos . 'Tela/listarOrdem.php' ?>">
                                 <i class="material-icons icons-internos">arrow_right</i>
                                 Ordem
+                            </a>
+                        </li>
+                        <li>
+                            <a href="<?php echo $pontos . 'Tela/listarUsuario.php' ?>">
+                                <i class="material-icons icons-internos">arrow_right</i>
+                                Usuarios
                             </a>
                         </li>
                         <li class="divider" style="margin-top: 0px;" tabindex="-1"></li>

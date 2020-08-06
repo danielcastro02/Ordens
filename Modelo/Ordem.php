@@ -11,13 +11,13 @@ private $data_chegada;
 private $data_entrega;
 private $data_pagamento;
 private $valor;
-const PENDENTE = 1; //preto
-const ORCADO = 2; //cinza
-const REALIZANDO = 3; //amarelo
-const IMPEDIDO = 4; //Roxo
-const PRONTO = 5; //verde mt claro
-const ENTREGUE = 6; //vermelho
-const PAGO = 7; //verde forte
+const PENDENTE = 1; //Preto #00000
+const ORCADO = 2; //Azul #4169E1
+const REALIZANDO = 3; //Amarelo #FFD700
+const IMPEDIDO = 4; //Roxo #5e35b1
+const PRONTO = 5; //Verde mt claro #39FF14
+const ENTREGUE = 6; //vermelho #E53935
+const PAGO = 7; //Verde forte #008000
 
 
 
