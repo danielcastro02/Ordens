@@ -18,7 +18,7 @@ class OrdemPDO extends PDOBase{
         
         $stmt->bindValue(':descricao', $ordem->getDescricao());    
         
-        $stmt->bindValue(':status', $ordem->getStatus());    
+        $stmt->bindValue(':status', Ordem::PENDENTE);
         
         $stmt->bindValue(':data_chegada', $ordem->getData_chegada());    
         
@@ -29,7 +29,7 @@ class OrdemPDO extends PDOBase{
         $stmt->bindValue(':valor', $ordem->getValor());    
         
         if($stmt->execute()){ 
-            header('location: ../index.php?msg=ordemInserido');
+            header('location: ../Tela/verOrdem.php?id_order='.$pdo->lastInsertId("id_ordem"));
         }else{
             header('location: ../index.php?msg=ordemErroInsert');
         }
@@ -49,7 +49,17 @@ class OrdemPDO extends PDOBase{
             return false;
         }
     }
-    
+
+    public function selectOrdemIndex(){
+        $pdo = conexao::getConexao();
+        $stmt = $pdo->prepare('select * from ordem where status = ;');
+        $stmt->execute();
+        if ($stmt->rowCount() > 0) {
+            return $stmt;
+        } else {
+            return false;
+        }
+    }
  
     public function updateOrdem(Ordem $ordem){        
          $pdo = conexao::getConexao();

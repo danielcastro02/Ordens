@@ -97,4 +97,9 @@ class UsuarioPDO extends PDOBase{
         }
     }
 
+    function logout(){
+        session_destroy();
+        header('location: ../Tela/login.php');
+    }
+
 /*chave*/}

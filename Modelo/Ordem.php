@@ -11,6 +11,13 @@ private $data_chegada;
 private $data_entrega;
 private $data_pagamento;
 private $valor;
+const PENDENTE = 1;
+const ORCADO = 2;
+const REALIZANDO = 3;
+const PRONTO = 4;
+const ENTREGUE = 5;
+const PAGO = 6;
+
 
 
 public function __construct() {
