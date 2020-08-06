@@ -40,7 +40,39 @@ $ordemPDO = new OrdemPDO();
                         $cliente->atualizar($stmtClienteOrdem->fetch());
                         ?>
                         <li class="collection-item avatar">
-                            <img src="<?php echo $pontos ?>/Img/Perfil/default.png" alt="Foto projeto" class="circle" style="left: 10px">
+                            <div class="col center-align divListParteEsquerda">
+                                <!--ID--> <p style="font-size: 25px"><?php echo $ordem->getId_ordem() ?></p>
+<!--                                <div style="margin-bottom: 15px"><span>Status</span></div>-->
+                            <div style="height: 15px"></div>
+                                <?php
+                                    $corDoBadge = "";
+                                    $statusBadge = "";
+                                    if(ordem::PENDENTE == $ordem->getStatus()){
+                                        $statusBadge = "Pendente";
+                                        $corDoBadge = "#00000";
+                                    }else if(ordem::ORCADO == $ordem->getStatus()){
+                                        $statusBadge = "Orçado";
+                                        $corDoBadge = "#4169E1";
+                                    }else if(ordem::REALIZANDO == $ordem->getStatus()){
+                                        $statusBadge = "Realizado";
+                                        $corDoBadge = "#FFD700";
+                                    }else if(ordem::IMPEDIDO == $ordem->getStatus()){
+                                        $statusBadge = "Impedido";
+                                        $corDoBadge = "#5e35b1";
+                                    }else if(ordem::PRONTO == $ordem->getStatus()){
+                                        $statusBadge = "Pronto";
+                                        $corDoBadge = "#39FF14";
+                                    }else if(ordem::ENTREGUE == $ordem->getStatus()){
+                                        $statusBadge = "Entregue";
+                                        $corDoBadge = "#E53935 ";
+                                    }else if(ordem::PAGO == $ordem->getStatus()){
+                                        $statusBadge = "Pago";
+                                        $corDoBadge = "#008000 ";
+                                    }
+                                ?>
+
+                                <span style="background-color: <?php echo $corDoBadge ?>" class="new badge badgeStatus"><?php echo $statusBadge ?></span>
+                            </div>
                             <div class="moreVertIcon col">
                                 <a href="#!" x="<?php echo $ordem->getId_ordem()?>" class="abrirDescricao black-text"><i class="material-icons">more_vert</i></a>
                             </div>
