@@ -16,10 +16,9 @@ include_once '../Base/requerLogin.php';
 <body class="homeimg">
 <?php
 include_once '../Base/iNav.php';
-include_once '../Controle/ClientePDO.php';
+include_once '../Controle/clientePDO.php';
 $clientePDO = new ClientePDO();
 include_once '../Controle/ordemPDO.php';
-include_once '../Controle/clientePDO.php';
 include_once '../Modelo/Cliente.php';
 include_once '../Modelo/Ordem.php';
 $clientePDO = new ClientePDO();

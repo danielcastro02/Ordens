@@ -55,7 +55,8 @@ include_once '../Base/navBar.php';
                                         echo "<a class='btn green darken-2 right' href='https://api.whatsapp.com/send?phone=" . $cliente->getClenPhone() . "'>Link do whats</a>";
                                     }
                                     ?>
-                                    <p>Descrição: <?php echo $ordem->getDescricao() ?></p>
+                                    <p>Descrição:<br>
+                                        <?php echo $ordem->getDescricao() ?></p>
                                 </div>
                             </div>
                         </div>

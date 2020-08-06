@@ -31,7 +31,7 @@ class OrdemPDO extends PDOBase
         $stmt->bindValue(':valor', $ordem->getValor());
 
         if ($stmt->execute()) {
-            header('location: ../Tela/verOrdem.php?id_order=' . $pdo->lastInsertId("id_ordem"));
+            header('location: ../Tela/verOrdem.php?id_ordem=' . $pdo->lastInsertId("id_ordem"));
         } else {
             header('location: ../index.php?msg=ordemErroInsert');
         }
@@ -66,7 +66,7 @@ class OrdemPDO extends PDOBase
         $stmt->bindValue(':valor', $ordem->getValor());
 
         if ($stmt->execute()) {
-            header('location: ../Tela/verOrdem.php?id_order=' . $pdo->lastInsertId("id_ordem"));
+            header('location: ../Tela/verOrdem.php?id_ordem=' . $ordem->getId_ordem());
         } else {
             header('location: ../index.php?msg=ordemErroInsert');
         }
@@ -83,6 +83,14 @@ class OrdemPDO extends PDOBase
         $stmt = $pdo->prepare("update ordem set data_pagamento = now() where id_ordem = :id_ordem");
         $stmt->bindValue(':id_ordem', $id_ordem);
         return $stmt->execute();
+    }
+
+    function selectOrdemIndex(){
+        $pdo = conexao::getConexao();
+        $stmt = $pdo->prepare("select * from ordem where id_ordem <> :pago order by status;");
+        $stmt->bindValue(":pago" ,ordem::PAGO);
+        $stmt->execute();
+        return $stmt;
     }
 
     function selectOrdemIdordem($id_ordem)
@@ -102,18 +110,6 @@ class OrdemPDO extends PDOBase
     {
         $pdo = conexao::getConexao();
         $stmt = $pdo->prepare('select * from ordem ;');
-        $stmt->execute();
-        if ($stmt->rowCount() > 0) {
-            return $stmt;
-        } else {
-            return false;
-        }
-    }
-
-    public function selectOrdemIndex()
-    {
-        $pdo = conexao::getConexao();
-        $stmt = $pdo->prepare('select * from ordem where status = ;');
         $stmt->execute();
         if ($stmt->rowCount() > 0) {
             return $stmt;

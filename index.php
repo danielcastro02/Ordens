@@ -32,7 +32,7 @@ $ordemPDO = new OrdemPDO();
             <div class="divider" style="margin-bottom: 0px"></div>
             <ul class="collection">
                 <?php
-                $stmtOrdem = $ordemPDO->selectOrdem();
+                $stmtOrdem = $ordemPDO->selectOrdemIndex();
                 if ($stmtOrdem) {
                     while ($linha = $stmtOrdem->fetch()) {
                         $ordem = new Ordem($linha);
@@ -94,7 +94,7 @@ $ordemPDO = new OrdemPDO();
                                 </p>
                             </div>
                             <a href="Tela/verOrdem.php?id_ordem=<?php echo $ordem->getId_ordem() ?>" class="itemListUsuario terceiroItem"><i class="material-icons textoCorPadrao2">description</i></a>
-                            <a href="TelaeditarOrdem.php?id_ordem=<?php echo $ordem->getId_ordem() ?>" class="itemListUsuario primeiroItem"><i class="material-icons textoCorPadrao2">edit</i></a>
+                            <a href="Tela/editarOrdem.php?id_ordem=<?php echo $ordem->getId_ordem() ?>" class="itemListUsuario primeiroItem"><i class="material-icons textoCorPadrao2">edit</i></a>
                             <a class="itemListUsuario segundoItem modal-trigger deletarPessoa" idPessoa="<?php echo $ordem->getId_ordem() ?>"><i class="material-icons red-text text-darken-2">clear</i></a>
 
                         </li>

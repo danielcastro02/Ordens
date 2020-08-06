@@ -68,7 +68,7 @@ include_once '../Base/navBar.php';
                                 <label for="status">Status</label>
                             </div>
                             <div class="input-field col s12">
-                                <textarea name="descricao" class="materialize-textarea" id="descricao" type="text"><?php echo $ordem->getEquipamento() ?></textarea>
+                                <textarea name="descricao" class="materialize-textarea" id="descricao" type="text"><?php echo $ordem->getDescricao() ?></textarea>
                                 <label for="descricao">Descricao</label>
                             </div>
                         </div>
