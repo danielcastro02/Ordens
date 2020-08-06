@@ -155,15 +155,15 @@ if (realpath("./index.php")) {
             <li>
                 <a class="waves-effect black-text collapsible-header anime" x="0" href="#!">
                     <i class="material-icons changeColor" style="color: black; font-size: 1.5rem">library_add</i>
-                    Cadastro
+                    Registro
                     <i class="large material-icons right animi black-text">arrow_drop_down</i>
                 </a>
                 <div class="collapsible-body bodyColorCollapsible">
                     <ul>
                         <li>
-                            <a href="<?php echo $pontos . 'Tela/registroMeioRecebimento.php' ?>">
+                            <a href="<?php echo $pontos . 'Tela/registroCliente.php' ?>">
                                 <i class="material-icons icons-internos">arrow_right</i>
-                                Usuário
+                                Cliente
                             </a>
                         </li>
                         <li>

@@ -19,23 +19,25 @@ include_once '../Base/navBar.php';
 <main>
 
     <div class="row">
-        <div class="col s12 m10 l8 offset-l2 offset-m1 card">
+        <div class="col s8 offset-s2 m10 l8 offset-l2 offset-m1 card">
+            <h4 class="textoCorPadrao2 center">Cadastrar cliente</h4>
+            <div class="divider"></div>
             <div class="row">
                 <div class="col s12">
                     <form action="../Controle/clienteControle.php?function=inserir" method="post">
                         <div class="row">
-                            <div class="input-field col s4">
+                            <div class="input-field col l5 s10 offset-s1">
                                 <input name="nome" id="nome" type="text">
                                 <label for="nome">Nome</label>
                             </div>
-                            <div class="input-field col s4">
+                            <div class="input-field col l4 s10 offset-s1">
                                 <input name="telefone" id="telefone" type="text">
                                 <label for="telefone">Telefone</label>
                             </div>
-                            <div class="col s4">
+                            <div class="col l3 s6 offset-s3 divSwitch">
+                                <label class="teal-text">Número do wats?</label>
                                 <div class="switch">
-                                    <span class="left teal-text">Número do wats?</span>
-                                    <label class="right">
+                                    <label>
                                         Off
                                         <input type="checkbox"
                                                name="is_wats"
@@ -44,6 +46,7 @@ include_once '../Base/navBar.php';
                                         On
                                     </label>
                                 </div>
+
                             </div>
                         </div>
                         <div class="row center">

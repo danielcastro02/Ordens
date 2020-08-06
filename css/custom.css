@@ -676,7 +676,7 @@ nav .sidenav-trigger i {
 .moreVertIcon{
     padding: 0 !important;
     width: min-content;
-    margin-left: 0px;
+    margin-left: 0;
     left: auto;
     right: auto;
     user-select: none;
@@ -690,7 +690,17 @@ nav .sidenav-trigger i {
 .maisDetalhes{
     display: none;
 }
+/*Ajeitar a responsividade do Switch*/
+.divSwitch{
+    margin-top: 10px;
+    padding-left: 20px !important;
+}
 
+@media only screen and (max-width: 630px) {
+    .divSwitch{
+        padding-left: 10% !important;
+    }
+}
 
 /*.sidenav .bodyColorCollapsible{*/
 /*    background-color: rgba(96, 122, 174, 0.2) !important;*/
