@@ -2,7 +2,7 @@
 if (!isset($_SESSION)) {
     session_start();
 }
-include_once '../Base/requerLogin.php';
+include_once './Base/requerLogin.php';
 ?>
 <!DOCTYPE html>
 
@@ -17,7 +17,7 @@ include_once '../Base/requerLogin.php';
     <title>Ordens</title>
 <body class="homeimg">
 <?php
-include_once './Base/iNav.php';x
+include_once './Base/iNav.php';
 ?>
 <main>
 
