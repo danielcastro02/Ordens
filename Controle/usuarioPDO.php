@@ -33,8 +33,17 @@ class UsuarioPDO extends PDOBase{
     }
     /*inserir*/
     
-
-            
+    public function selectUsuarioIdUsuario($id_usuario){
+        $pdo = conexao::getConexao();
+        $stmt = $pdo->prepare('select * from usuario where id_usuario = :id_usuario;');
+        $stmt->bindValue(':id_usuario', $id_usuario);
+        $stmt->execute();
+        if ($stmt->rowCount() > 0) {
+            return $stmt;
+        } else {
+            return false;
+        }
+    }
 
     public function selectUsuario(){
         $pdo = conexao::getConexao();
