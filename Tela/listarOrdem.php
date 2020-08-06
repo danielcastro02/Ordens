@@ -16,8 +16,8 @@ include_once '../Base/requerLogin.php';
 <body class="homeimg">
 <?php
 include_once '../Base/iNav.php';
-include_once '../Controle/OrdemPDO.php';
-include_once '../Controle/ClientePDO.php';
+include_once '../Controle/ordemPDO.php';
+include_once '../Controle/clientePDO.php';
 include_once '../Modelo/Cliente.php';
 include_once '../Modelo/Ordem.php';
 $clientePDO = new ClientePDO();
@@ -46,8 +46,9 @@ $ordemPDO = new OrdemPDO();
                             </div>
                             <div class="divWraper col infoPrincipal" x="<?php echo $ordem->getId_ordem()?>">
                                 <span class="title">Clinte: <?php echo $cliente->getNome() ?></span>
-                                <p>Chegou: <?php echo $ordem->getData_chegada().' |'?>
-                                    Saiu: <?php echo $ordem->getData_entrega()?>
+                                <p>Chegou: <?php echo $ordem->getDataChegadaFormated().' |'?>
+                                    Saiu: <?php echo $ordem->getEntregaFormated()?>|
+                                    Pagamento: <?php echo $ordem->getPagoFormated()?>
                                     <br>
                                     Preço: <?php echo $ordem->getValor() ?>
                                 </p>
@@ -56,11 +57,9 @@ $ordemPDO = new OrdemPDO();
                                 <span class="title">Mais detalhes</span>
                                 <p >
                                     <?php echo $ordem->getDescricao()?>
-                                    <br>
-                                    Data da entraga: <?php echo $ordem->getData_entrega()?>
                                 </p>
                             </div>
-                            <a href="./editarPessoa.php?id_pessoa=<?php echo $ordem->getId_ordem() ?>" class="itemListUsuario primeiroItem"><i class="material-icons textoCorPadrao2">edit</i></a>
+                            <a href="./editarOrdem.php?id_ordem=<?php echo $ordem->getId_ordem() ?>" class="itemListUsuario primeiroItem"><i class="material-icons textoCorPadrao2">edit</i></a>
                             <a class="itemListUsuario segundoItem modal-trigger deletarPessoa" idPessoa="<?php echo $ordem->getId_ordem() ?>"><i class="material-icons red-text text-darken-2">clear</i></a>
 
                         </li>

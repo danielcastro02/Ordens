@@ -25,9 +25,12 @@ include_once '../Base/navBar.php';
             <div class="row">
                 <div class="col s12">
                     <form action="../Controle/ordemControle.php?function=inserir" method="post">
+                        <div class="row center">
+                            <h5>Editar Ordem</h5>
+                        </div>
                         <div class="row">
                             <div class="input-field col s4">
-                                <select name="id_ciente">
+                                <select name="id_cliente">
                                     <?php
                                     $clientePDO = new clientePDO();
                                     $clientes = $clientePDO->selectCliente();
