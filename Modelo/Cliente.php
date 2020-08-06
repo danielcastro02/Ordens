@@ -30,6 +30,20 @@ public function __construct() {
         }
     }
 
+    function getClenPhone(){
+        $this->telefone = str_replace("(" , "" , $this->telefone);
+        $this->telefone = str_replace("(" , "" , $this->telefone);
+        $this->telefone = str_replace(")" , "" , $this->telefone);
+        $this->telefone = str_replace(")" , "" , $this->telefone);
+        $this->telefone = str_replace(" " , "" , $this->telefone);
+        $this->telefone = str_replace(" " , "" , $this->telefone);
+        $this->telefone = str_replace("-" , "" , $this->telefone);
+        $this->telefone = str_replace("-" , "" , $this->telefone);
+        $this->telefone = str_replace(" " , "" , $this->telefone);
+        $this->telefone = str_replace(" " , "" , $this->telefone);
+        return $this->telefone;
+    }
+
      public function getId_cliente(){
          return $this->id_cliente;
      }
