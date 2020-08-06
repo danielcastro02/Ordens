@@ -657,7 +657,7 @@ nav .sidenav-trigger i {
 
 /*Item no collection avatar*/
 .collection .collection-item.avatar {
-    padding-left: 53px !important;
+    padding-left: 0 !important;
 }
 
 /*Div que evita qeubra de linha nas listagens*/
@@ -700,6 +700,30 @@ nav .sidenav-trigger i {
     .divSwitch{
         padding-left: 10% !important;
     }
+}
+
+/*Div que envolve o conteudo a esquerda na listagem (feito para a listagem de ordens)*/
+
+.divListParteEsquerda{
+    width: 53px;
+    height: 64px
+}
+
+/*Ajeitar o badge*/
+
+span.badge{
+    padding: 0 6px!important;
+    margin-left: -8px !important;
+    font-weight: 300;
+    font-size: 0.8rem;
+    color: #fff;
+    border-radius: 2px;
+    float: none !important;
+    width: 40px !important;
+}
+
+span.badge.new:after {
+     content: none;
 }
 
 /*.sidenav .bodyColorCollapsible{*/
