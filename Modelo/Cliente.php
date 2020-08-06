@@ -4,7 +4,7 @@ class cliente{
 
 private $id_cliente;
 private $nome;
-private $tefone;
+private $telefone;
 private $is_wats;
 private $STATUS;
 const ST_EMDIA = 0;
@@ -46,12 +46,12 @@ public function __construct() {
           $this->nome = $nome;
      }
 
-     public function getTefone(){
-         return $this->tefone;
+     public function getTelefone(){
+         return $this->telefone;
      }
 
-     function setTefone($tefone){
-          $this->tefone = $tefone;
+     function setTelefone($telefone){
+          $this->telefone = $telefone;
      }
 
      public function getIs_wats(){

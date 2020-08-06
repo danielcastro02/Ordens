@@ -15,7 +15,7 @@ class ClientePDO extends PDOBase{
 
         $stmt->bindValue(':nome', $cliente->getNome());    
         
-        $stmt->bindValue(':tefone', $cliente->getTefone());    
+        $stmt->bindValue(':tefone', $cliente->getTelefone());
         
         $stmt->bindValue(':is_wats', (isset($_POST['is_wats'])?"1":"0"));
         
@@ -47,7 +47,7 @@ class ClientePDO extends PDOBase{
         $stmt = $pdo->prepare('update cliente set nome = :nome , tefone = :tefone , is_wats = :is_wats , STATUS = :STATUS where id_cliente = :id_cliente;');
         $stmt->bindValue(':nome', $cliente->getNome());
         
-        $stmt->bindValue(':tefone', $cliente->getTefone());
+        $stmt->bindValue(':tefone', $cliente->getTelefone());
         
         $stmt->bindValue(':is_wats', $cliente->getIs_wats());
         

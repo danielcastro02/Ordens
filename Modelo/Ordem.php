@@ -11,12 +11,13 @@ private $data_chegada;
 private $data_entrega;
 private $data_pagamento;
 private $valor;
-const PENDENTE = 1;
-const ORCADO = 2;
-const REALIZANDO = 3;
-const PRONTO = 4;
-const ENTREGUE = 5;
-const PAGO = 6;
+const PENDENTE = 1; //preto
+const ORCADO = 2; //cinza
+const REALIZANDO = 3; //amarelo
+const IMPEDIDO = 4; //Roxo
+const PRONTO = 5; //verde mt claro
+const ENTREGUE = 6; //vermelho
+const PAGO = 7; //verde forte
 
 
 
@@ -37,6 +38,20 @@ public function __construct() {
                 $this->$atributo = $valor;
             }
         }
+    }
+
+    function getDataChegadaFormated(){
+        $newDate = explode("-" , $this->getData_chegada());
+        return $newDate[2] . "/" . $newDate[1] . "/" . $newDate[0];
+    }
+
+    function getEntregaFormated(){
+        $newDate = explode("-" , $this->getData_entrega());
+        return $newDate[2] . "/" . $newDate[1] . "/" . $newDate[0];
+    }
+    function getPagoFormated(){
+        $newDate = explode("-" , $this->getData_pagamento());
+        return $newDate[2] . "/" . $newDate[1] . "/" . $newDate[0];
     }
 
      public function getId_ordem(){
