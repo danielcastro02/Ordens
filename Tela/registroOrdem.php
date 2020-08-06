@@ -47,7 +47,7 @@ include_once '../Base/navBar.php';
                                 <label for="valor">Valor</label>
                             </div>
                             <div class="input-field col s12">
-                                <textarea name="descricao" id="descricao" type="text"></textarea>
+                                <textarea name="descricao" class="materialize-textarea" id="descricao" type="text"></textarea>
                                 <label for="descricao">Descricao</label>
                             </div>
                         </div>
@@ -68,6 +68,7 @@ include_once '../Base/footer.php';
 
 <script>
     $("#telefone").mask("(00) 00000-0000");
+    $("select").formSelect();
 </script>
 </body>
 </html>

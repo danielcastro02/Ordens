@@ -2,7 +2,7 @@
 
     include_once __DIR__ . '/../Controle/conexao.php';
     include_once __DIR__ . '/../Modelo/Cliente.php';
-    include_once __DIR__ . '/../Controle/OrdemPDO.php';
+    include_once __DIR__ . '/../Controle/ordemPDO.php';
     include_once __DIR__ . '/../Modelo/Ordem.php';
     include_once __DIR__ . '/PDOBase.php';
 
@@ -17,11 +17,9 @@ class ClientePDO extends PDOBase{
         
         $stmt->bindValue(':tefone', $cliente->getTefone());    
         
-        $stmt->bindValue(':is_wats', $cliente->getIs_wats());    
+        $stmt->bindValue(':is_wats', (isset($_POST['is_wats'])?"1":"0"));
         
-        $stmt->bindValue(':STATUS', $cliente->getSTATUS());    
-        
-        if($stmt->execute()){ 
+        if($stmt->execute()){
             header('location: ../index.php?msg=clienteInserido');
         }else{
             header('location: ../index.php?msg=clienteErroInsert');
