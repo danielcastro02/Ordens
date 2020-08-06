@@ -593,19 +593,20 @@ nav .sidenav-trigger i {
     padding: 4px;
     transition: background-color 0.2s;
     user-select: none;
+    cursor: pointer;
 }
 
 .itemListUsuario:hover{
     background-color: #e0e0ef;
 }
 
-/*Primero e segundo icone na listagem*/
+/*Primero, segundo  e terceiro icone na listagem*/
 .primeiroItem{
     top: 16px;
     right: 70px;
 }
 
-.primeiroItem i, .segundoItem i{
+.primeiroItem i, .segundoItem i, .terceiroItem i{
     font-size: 40px;
     display: flex;
 }
@@ -613,6 +614,11 @@ nav .sidenav-trigger i {
 .segundoItem{
     top: 16px;
     right: 16px;
+}
+
+.terceiroItem{
+    top: 16px;
+    right: 124px;
 }
 
 @media only screen and (max-width: 530px){
