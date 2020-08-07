@@ -668,14 +668,13 @@ nav .sidenav-trigger i {
 
 /*Div que evita qeubra de linha nas listagens*/
 .divWraper{
-    width: 70%;
+    width: 60%;
     margin-left: auto;
     left: auto;
     right: auto;
     max-height: 64px;
     text-overflow: ellipsis;
     overflow: hidden;
-    white-space: nowrap;
     padding: 0 !important;
 }
 /*Icone more_vert ao lado*/

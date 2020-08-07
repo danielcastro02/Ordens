@@ -90,29 +90,12 @@ if (realpath("./index.php")) {
     </nav>
 </div>
 
-<!--        Btn fixed floating-->
-<!--<div class="fixed-action-btn">-->
-<!--    <a class="btn-floating btn-large corPadrao2 tooltipped animacao z-depth-5" x="0" data-tooltip="Ações">-->
-<!--        <i class="large material-icons giraEmudaCorFloating" style="font-size: 1.5625rem">swap_horiz</i>-->
-<!--    </a>-->
-<!--    <ul>-->
-<!--        <li>-->
-<!--            <a href="--><?php //echo $pontos;?><!--Tela/tela-teste-calendario.php" class="btn-floating yellow tooltipped" data-tooltip="Calendario">-->
-<!--                <i class="material-icons">event</i>-->
-<!--            </a>-->
-<!--        </li>-->
-<!--        <li>-->
-<!--            <a href="--><?php //echo $pontos;?><!--Tela/entrada.php" class="btn-floating corPadrao4 tooltipped" data-tooltip="Regitrar entrada">-->
-<!--                <i class="material-icons">add</i>-->
-<!--            </a>-->
-<!--        </li>-->
-<!--        <li>-->
-<!--            <a href="--><?php //echo $pontos;?><!--Tela/saida.php" class="btn-floating red tooltipped" data-tooltip="Regitrar saida">-->
-<!--                <i class="material-icons">remove</i>-->
-<!--            </a>-->
-<!--        </li>-->
-<!--    </ul>-->
-<!--</div>-->
+        Btn fixed floating
+<div class="fixed-action-btn">
+    <a href="<?php echo $pontos?>Tela/registroOrdem.php" class="btn-floating btn-large green tooltipped z-depth-5" x="0" data-tooltip="Nova ordem">
+        <i class="large material-icons" style="font-size: 1.5625rem">add</i>
+    </a>
+</div>
 
 <!--SidNavBar que deve se tornar padrão-->
 

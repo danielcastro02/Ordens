@@ -27,7 +27,7 @@ $ordemPDO = new OrdemPDO();
 <main>
     <div class="row" style="width: 90%">
         <div class="card col s12">
-            <h4 class="textoCorPadrao2 center">Pessoas</h4>
+            <h4 class="textoCorPadrao2 center">Clientes</h4>
             <div class="divider" style="margin-bottom: 0"></div>
             <ul class="collection">
                 <?php
