@@ -167,7 +167,7 @@ if (realpath("./index.php")) {
                             </a>
                         </li>
                         <li>
-                            <a href="<?php echo $pontos . 'Tela/listagemMeioRecebimento.php' ?>">
+                            <a href="<?php echo $pontos . 'Tela/registroOrdem.php' ?>">
                                 <i class="material-icons icons-internos">arrow_right</i>
                                 Ordem
                             </a>
