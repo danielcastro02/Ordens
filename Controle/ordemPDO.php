@@ -39,6 +39,66 @@ class OrdemPDO extends PDOBase
 
     /*inserir*/
 
+    function setOrderOrcado()
+    {
+        $pdo = conexao::getConexao();
+        $stmt = $pdo->prepare("update ordem set status = :status where id_ordem = :id_ordem");
+        $stmt->bindValue(":status" , ordem::ORCADO);
+        $stmt->bindValue(":id_ordem" , $_GET['id_ordem']);
+        $stmt->execute();
+        header("location: ../Tela/verOrdem.php?id_ordem=".$_GET['id_ordem']);
+    }
+
+    function setOrderRealizado()
+    {
+        $pdo = conexao::getConexao();
+        $stmt = $pdo->prepare("update ordem set status = :status where id_ordem = :id_ordem");
+        $stmt->bindValue(":status" , ordem::ORCADO);
+        $stmt->bindValue(":id_ordem" , $_GET['id_ordem']);
+        $stmt->execute();
+        header("location: ../Tela/verOrdem.php?id_ordem=".$_GET['id_ordem']);
+    }
+
+    function setOrderImpedido()
+    {
+        $pdo = conexao::getConexao();
+        $stmt = $pdo->prepare("update ordem set status = :status where id_ordem = :id_ordem");
+        $stmt->bindValue(":status" , ordem::IMPEDIDO);
+        $stmt->bindValue(":id_ordem" , $_GET['id_ordem']);
+        $stmt->execute();
+        header("location: ../Tela/verOrdem.php?id_ordem=".$_GET['id_ordem']);
+    }
+
+    function setOrderPronto()
+    {
+        $pdo = conexao::getConexao();
+        $stmt = $pdo->prepare("update ordem set status = :status where id_ordem = :id_ordem");
+        $stmt->bindValue(":status" , ordem::PRONTO);
+        $stmt->bindValue(":id_ordem" , $_GET['id_ordem']);
+        $stmt->execute();
+        header("location: ../Tela/verOrdem.php?id_ordem=".$_GET['id_ordem']);
+    }
+
+    function setOrderEntregue()
+    {
+        $pdo = conexao::getConexao();
+        $stmt = $pdo->prepare("update ordem set status = :status , data_entrega = now() where id_ordem = :id_ordem");
+        $stmt->bindValue(":status" , ordem::ENTREGUE);
+        $stmt->bindValue(":id_ordem" , $_GET['id_ordem']);
+        $stmt->execute();
+        header("location: ../Tela/verOrdem.php?id_ordem=".$_GET['id_ordem']);
+    }
+
+    function setOrderPago()
+    {
+        $pdo = conexao::getConexao();
+        $stmt = $pdo->prepare("update ordem set status = :status , data_pagamento = now() where id_ordem = :id_ordem");
+        $stmt->bindValue(":status" , ordem::PAGO);
+        $stmt->bindValue(":id_ordem" , $_GET['id_ordem']);
+        $stmt->execute();
+        header("location: ../Tela/verOrdem.php?id_ordem=".$_GET['id_ordem']);
+    }
+
     function editar()
     {
         $ordem = new ordem($_POST);
@@ -71,24 +131,28 @@ class OrdemPDO extends PDOBase
             header('location: ../index.php?msg=ordemErroInsert');
         }
     }
-    function updateOrdemTimeEntregue($id_ordem){
+
+    function updateOrdemTimeEntregue($id_ordem)
+    {
         $pdo = conexao::getConexao();
         $stmt = $pdo->prepare("update ordem set data_entrega = now() where id_ordem = :id_ordem");
         $stmt->bindValue(':id_ordem', $id_ordem);
         return $stmt->execute();
     }
 
-    function updateOrdemTimePago($id_ordem){
+    function updateOrdemTimePago($id_ordem)
+    {
         $pdo = conexao::getConexao();
         $stmt = $pdo->prepare("update ordem set data_pagamento = now() where id_ordem = :id_ordem");
         $stmt->bindValue(':id_ordem', $id_ordem);
         return $stmt->execute();
     }
 
-    function selectOrdemIndex(){
+    function selectOrdemIndex()
+    {
         $pdo = conexao::getConexao();
         $stmt = $pdo->prepare("select * from ordem where id_ordem <> :pago order by status;");
-        $stmt->bindValue(":pago" ,ordem::PAGO);
+        $stmt->bindValue(":pago", ordem::PAGO);
         $stmt->execute();
         return $stmt;
     }
