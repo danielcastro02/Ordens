@@ -44,20 +44,30 @@ class ordem
 
     function getDataChegadaFormated()
     {
-        $newDate = explode("-", $this->getData_chegada());
-        return $newDate[2] . "/" . $newDate[1] . "/" . $newDate[0];
+        if (strlen($this->data_chegada) > 0) {
+            $newDate = explode("-", $this->getData_chegada());
+            return $newDate[2] . "/" . $newDate[1] . "/" . $newDate[0];
+        }
+        return "";
     }
 
     function getEntregaFormated()
     {
-        $newDate = explode("-", $this->getData_entrega());
-        return $newDate[2] . "/" . $newDate[1] . "/" . $newDate[0];
+        if (strlen($this->data_entrega) > 0) {
+            $newDate = explode("-", $this->getData_entrega());
+            return $newDate[2] . "/" . $newDate[1] . "/" . $newDate[0];
+        }
+        return "";
+
     }
 
     function getPagoFormated()
     {
-        $newDate = explode("-", $this->getData_pagamento());
-        return $newDate[2] . "/" . $newDate[1] . "/" . $newDate[0];
+        if (strlen($this->data_pagamento) > 0) {
+            $newDate = explode("-", $this->getData_pagamento());
+            return $newDate[2] . "/" . $newDate[1] . "/" . $newDate[0];
+        }
+        return "";
     }
 
     public function getId_ordem()

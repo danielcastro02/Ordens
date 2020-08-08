@@ -53,7 +53,7 @@ class OrdemPDO extends PDOBase
     {
         $pdo = conexao::getConexao();
         $stmt = $pdo->prepare("update ordem set status = :status where id_ordem = :id_ordem");
-        $stmt->bindValue(":status" , ordem::ORCADO);
+        $stmt->bindValue(":status" , ordem::REALIZANDO);
         $stmt->bindValue(":id_ordem" , $_GET['id_ordem']);
         $stmt->execute();
         header("location: ../Tela/verOrdem.php?id_ordem=".$_GET['id_ordem']);
@@ -151,7 +151,7 @@ class OrdemPDO extends PDOBase
     function selectOrdemIndex()
     {
         $pdo = conexao::getConexao();
-        $stmt = $pdo->prepare("select * from ordem where id_ordem <> :pago order by status;");
+        $stmt = $pdo->prepare("select * from ordem where status <> :pago order by status;");
         $stmt->bindValue(":pago", ordem::PAGO);
         $stmt->execute();
         return $stmt;
@@ -162,6 +162,18 @@ class OrdemPDO extends PDOBase
         $pdo = conexao::getConexao();
         $stmt = $pdo->prepare('select * from ordem where id_ordem = :id_ordem;');
         $stmt->bindValue(':id_ordem', $id_ordem);
+        $stmt->execute();
+        if ($stmt->rowCount() > 0) {
+            return $stmt;
+        } else {
+            return false;
+        }
+    }
+    function selectOrdemIdCliente($id_cliente)
+    {
+        $pdo = conexao::getConexao();
+        $stmt = $pdo->prepare('select * from ordem where id_cliente = :id_cliente;');
+        $stmt->bindValue(':id_cliente', $id_cliente);
         $stmt->execute();
         if ($stmt->rowCount() > 0) {
             return $stmt;

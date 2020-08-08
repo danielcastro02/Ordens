@@ -52,23 +52,23 @@ include_once '../Base/navBar.php';
                                     <p>Celular: <?php echo $cliente->getTelefone() ?></p>
                                     <?php
                                     if ($cliente->getIs_wats() == 1) {
-                                        echo "<a class='btn green darken-2 right' href='https://api.whatsapp.com/send?phone=" . $cliente->getClenPhone() . "'>Link do whats</a>";
+                                        echo "<a class='btn green darken-2 right' target='_blank' href='https://api.whatsapp.com/send?phone=55" . $cliente->getClenPhone() . "'>Link do whats</a>";
                                     }
                                     ?>
-                                    <p>Descrição:<br>
-                                        <?php echo $ordem->getDescricao() ?></p>
+                                    <span style="white-space: pre-wrap; user-select: text;">Descrição:<br><?php echo $ordem->getDescricao() ?></span>
                                 </div>
+                                <br>
                                 <?php
                                 switch ($ordem->getStatus()){
                                     case ordem::PENDENTE:
                                         ?><a href="../Controle/ordemControle.php?function=setOrderOrcado&id_ordem=<?php echo $ordem->getId_ordem() ?>" class="btn blue lighten-1">Orçado</a> <?php
                                         break;
                                     case ordem::ORCADO:
-                                        ?><a href="../Controle/ordemControle.php?function=setOrderRealizado&id_ordem=<?php echo $ordem->getId_ordem() ?>" class="btn yellow">Realizando</a> <?php
+                                        ?><a href="../Controle/ordemControle.php?function=setOrderRealizado&id_ordem=<?php echo $ordem->getId_ordem() ?>" class="btn yellow darken-3">Realizando</a> <?php
                                         break;
                                     case ordem::REALIZANDO:
-                                        ?><a href="../Controle/ordemControle.php?function=setOrderImpedido&id_ordem=<?php echo $ordem->getId_ordem() ?>" style="background-color: #5e35b1" class="btn ">Impedido</a> <?php
-                                        ?><a href="../Controle/ordemControle.php?function=setOrderRealizado&id_ordem=<?php echo $ordem->getId_ordem() ?>" class="btn yellow">Realizado</a> <?php
+                                        ?><a href="../Controle/ordemControle.php?function=setOrderImpedido&id_ordem=<?php echo $ordem->getId_ordem() ?>" style="background-color: #5e35b1" class="btn purple">Impedido</a> <?php
+                                        ?><a href="../Controle/ordemControle.php?function=setOrderPronto&id_ordem=<?php echo $ordem->getId_ordem() ?>" class="btn yellow darken-3">Realizado</a> <?php
                                         break;
                                     case ordem::IMPEDIDO:
                                         ?><a href="../Controle/ordemControle.php?function=setOrderPronto&id_ordem=<?php echo $ordem->getId_ordem() ?>" class="btn green lighten-2">Pronto</a> <?php
