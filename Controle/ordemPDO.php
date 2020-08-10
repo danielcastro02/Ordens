@@ -185,7 +185,7 @@ class OrdemPDO extends PDOBase
     public function selectOrdem()
     {
         $pdo = conexao::getConexao();
-        $stmt = $pdo->prepare('select * from ordem ;');
+        $stmt = $pdo->prepare('select * from ordem order by id_ordem desc;');
         $stmt->execute();
         if ($stmt->rowCount() > 0) {
             return $stmt;
