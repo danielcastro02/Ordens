@@ -574,10 +574,10 @@ nav .sidenav-trigger i {
 .containerMeu{
     margin: 0 auto;
     max-width: 1280px;
-    width: 95%;
+    width: 90%;
 }
 
-@media only screen and (min-width: 601px) {
+@media only screen and (max-width: 601px) {
     .containerMeu{
         width: 100%;
     }
@@ -621,8 +621,8 @@ nav .sidenav-trigger i {
     right: 124px;
 }
 
-@media only screen and (max-width: 530px){
-    .primeiroItem i, .segundoItem i{
+@media only screen and (max-width: 630px){
+    .primeiroItem i, .segundoItem i, .terceiroItem i{
         font-size: 30px;
     }
 
@@ -638,6 +638,18 @@ nav .sidenav-trigger i {
     .segundoItem{
         top: 45px;
         right: 9px;
+        display: none;
+    }
+
+    .terceiroItem{
+        top: 45px;
+        right: 9px;
+    }
+
+
+    .btReCliFooter{
+        width: 45%;
+        border-radius: 5px;
     }
 }
 
@@ -668,7 +680,7 @@ nav .sidenav-trigger i {
 
 /*Div que evita qeubra de linha nas listagens*/
 .divWraper{
-    width: 60%;
+    width: 70%;
     margin-left: auto;
     left: auto;
     right: auto;
@@ -705,6 +717,12 @@ nav .sidenav-trigger i {
     .divSwitch{
         padding-left: 10% !important;
     }
+    .collection .collection-item.avatar {
+        height: 105px !important;
+    }
+    .divWraper{
+        max-height: 84px !important;
+    }
 }
 
 /*Div que envolve o conteudo a esquerda na listagem (feito para a listagem de ordens)*/
@@ -730,6 +748,7 @@ span.badge{
 span.badge.new:after {
      content: none;
 }
+
 
 /*.sidenav .bodyColorCollapsible{*/
 /*    background-color: rgba(96, 122, 174, 0.2) !important;*/

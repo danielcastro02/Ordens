@@ -25,7 +25,7 @@ $clientePDO = new ClientePDO();
 $ordemPDO = new OrdemPDO();
 ?>
 <main>
-    <div class="row" style="width: 90%">
+    <div class="row containerMeu">
         <div class="card col s12">
             <h4 class="textoCorPadrao2 center">Clientes</h4>
             <div class="divider" style="margin-bottom: 0"></div>
@@ -36,7 +36,7 @@ $ordemPDO = new OrdemPDO();
                     while ($linha = $stmtCliente->fetch()) {
                         $cliente = new Cliente($linha);
                         ?>
-                        <li class="collection-item avatar">
+                        <li class="collection-item avatar" style="max-height: 84px !important">
                             <div class="col center-align divListParteEsquerda">
                                 <div><span>Status</span></div>
                                 <?php
@@ -56,20 +56,20 @@ $ordemPDO = new OrdemPDO();
                             <div class="moreVertIcon col">
                                 <a href="#!" x="<?php echo $cliente->getId_cliente()?>" class="abrirDescricao black-text"><i class="material-icons">more_vert</i></a>
                             </div>
-                            <div class="divWraper col infoPrincipal" x="<?php echo $cliente->getId_cliente()?>">
+                            <div class="divWraper col infoPrincipal" style="max-height: 64px"  x="<?php echo $cliente->getId_cliente()?>">
                                 <span class="title"><?php echo $cliente->getNome() ?></span>
                                 <p><?php echo $cliente->getTelefone() ?><br>
                                     Wats: <?php echo $cliente->getIs_wats() == 1 ? "Sim" : "Não" ?>
                                 </p>
                             </div>
-                            <div class="divWraper col maisDetalhes" x="<?php echo $cliente->getId_cliente()?>">
+                            <div class="divWraper col maisDetalhes" style="max-height: 64px" x="<?php echo $cliente->getId_cliente()?>">
                                 <span class="title">Mais detalhes</span>
                                 <p >
                                     Id: <?php echo $cliente->getId_cliente()?>
                                     <br>
                                 </p>
                             </div>
-                            <a href="./verCliente.php?id_cliente=<?php echo $cliente->getId_cliente() ?>" class="itemListUsuario terceiroItem"><i class="material-icons textoCorPadrao2">description</i></a>
+                            <a href="./verCliente.php?id_cliente=<?php echo $cliente->getId_cliente() ?>" class="itemListUsuario terceiroItem"><i class="material-icons indigo-text">description</i></a>
                             <a href="./editarPessoa.php?id_pessoa=<?php echo $cliente->getId_cliente() ?>" class="itemListUsuario primeiroItem"><i class="material-icons textoCorPadrao2">edit</i></a>
                             <a class="itemListUsuario segundoItem modal-trigger deletarPessoa" idPessoa="<?php echo $cliente->getId_cliente() ?>"><i class="material-icons red-text text-darken-2">clear</i></a>
 
