@@ -90,7 +90,7 @@ if (realpath("./index.php")) {
     </nav>
 </div>
 
-        Btn fixed floating
+<!--        Btn fixed floating-->
 <div class="fixed-action-btn">
     <a href="<?php echo $pontos?>Tela/registroOrdem.php" class="btn-floating btn-large green tooltipped z-depth-5" x="0" data-tooltip="Nova ordem">
         <i class="large material-icons" style="font-size: 1.5625rem">add</i>

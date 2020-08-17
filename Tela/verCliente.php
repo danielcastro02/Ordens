@@ -95,20 +95,23 @@ include_once '../Base/navBar.php';
                                     </div>
                                     <div class="divWraper col infoPrincipal" x="<?php echo $ordem->getId_ordem()?>">
                                         <span class="title">Clinte: <?php echo $cliente->getNome() ?></span>
-                                        <p>Chegou: <?php echo $ordem->getDataChegadaFormated().' |'?>
-                                            Saiu: <?php echo $ordem->getEntregaFormated() . " |"?>
-                                            Pagamento: <?php echo $ordem->getPagoFormated()?>
+                                        <p>Chegou: <?php echo $ordem->getDataChegadaFormated()?>
+                                            <br class="hide-on-med-and-up ">
+                                            Saiu: <?php echo $ordem->getEntregaFormated() ?>
                                             <br>
                                             Preço: R$ <?php echo $ordem->getValor() ?>
                                         </p>
                                     </div>
                                     <div class="divWraper col maisDetalhes" x="<?php echo $ordem->getId_ordem()?>">
                                         <span class="title">Mais detalhes</span>
+                                        <p>
+                                            Pagamento: <?php echo $ordem->getPagoFormated()?>
+                                        </p>
                                         <p >
                                             <?php echo $ordem->getDescricao()?>
                                         </p>
                                     </div>
-                                    <a href="../Tela/verOrdem.php?id_ordem=<?php echo $ordem->getId_ordem() ?>" class="itemListUsuario terceiroItem"><i class="material-icons textoCorPadrao2">description</i></a>
+                                    <a href="../Tela/verOrdem.php?id_ordem=<?php echo $ordem->getId_ordem() ?>" class="itemListUsuario terceiroItem"><i class="material-icons indigo-text">description</i></a>
                                     <a href="../Tela/editarOrdem.php?id_ordem=<?php echo $ordem->getId_ordem() ?>" class="itemListUsuario primeiroItem"><i class="material-icons textoCorPadrao2">edit</i></a>
                                     <a class="itemListUsuario segundoItem modal-trigger deletarPessoa" idPessoa="<?php echo $ordem->getId_ordem() ?>"><i class="material-icons red-text text-darken-2">clear</i></a>
 

@@ -19,7 +19,7 @@ include_once '../Base/navBar.php';
 <main>
 
     <div class="row">
-        <div class="col s8 offset-s2 m10 l8 offset-l2 offset-m1 card">
+        <div class="col s10 offset-s1 card">
             <h4 class="textoCorPadrao2 center">Cadastrar cliente</h4>
             <div class="divider"></div>
             <div class="row">
@@ -34,24 +34,24 @@ include_once '../Base/navBar.php';
                                 <input name="telefone" id="telefone" type="text">
                                 <label for="telefone">Telefone</label>
                             </div>
-                            <div class="col l3 s6 offset-s3 divSwitch">
+                            <div class="col l3 s6 offset-s3 m5 offset-m4 divSwitch">
                                 <label class="teal-text">Número do wats?</label>
                                 <div class="switch">
                                     <label>
-                                        Off
+                                        Não
                                         <input type="checkbox"
                                                name="is_wats"
                                                value="1">
                                         <span class="lever"></span>
-                                        On
+                                        Sim
                                     </label>
                                 </div>
 
                             </div>
                         </div>
                         <div class="row center">
-                            <a class="btn corPadrao3" href="../index.php">Voltar</a>
-                            <button type="submit" class="btn corPadrao2">Confirmar</button>
+                            <a class="btn corPadrao3 btReCliFooter" href="../index.php">Voltar</a>
+                            <button type="submit" class="btn corPadrao2 btReCliFooter">Confirmar</button>
                         </div>
                     </form>
                 </div>
