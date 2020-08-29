@@ -60,6 +60,37 @@ class MovimentoPDO extends PDOBase
 
     /* inserir */
 
+    public function selectRetiradasDaniel($id_mes){
+        $pdo = conexao::getConexao();
+        $stmt = $pdo->prepare("select sum(valor) as soma from movimento where id_mes = :id_mes and descricao = 'Retirada Daniel'");
+        $stmt->bindValue(":id_mes" , $id_mes);
+        $stmt->execute();
+        return $stmt->fetch()["soma"];
+    }
+    public function selectRetiradasFrancisco($id_mes){
+        $pdo = conexao::getConexao();
+        $stmt = $pdo->prepare("select sum(valor) as soma from movimento where id_mes = :id_mes and descricao = 'Retirada Francisco'");
+        $stmt->bindValue(":id_mes" , $id_mes);
+        $stmt->execute();
+        return $stmt->fetch()["soma"];
+    }
+
+    public function selectTotalGastos($id_mes){
+        $pdo = conexao::getConexao();
+        $stmt = $pdo->prepare("select sum(valor) as soma from movimento where id_mes = :id_mes and descricao <> 'Retirada Francisco' and descricao <> 'Retirada Daniel' and operacao = 'saida'");
+        $stmt->bindValue(":id_mes" , $id_mes);
+        $stmt->execute();
+        return $stmt->fetch()["soma"];
+    }
+
+    public function selectTotalEntradas($id_mes){
+        $pdo = conexao::getConexao();
+        $stmt = $pdo->prepare("select sum(valor) as soma from movimento where id_mes = :id_mes and operacao = 'entrada'");
+        $stmt->bindValue(":id_mes" , $id_mes);
+        $stmt->execute();
+        return $stmt->fetch()["soma"];
+    }
+
     public function selectMovimento()
     {
 

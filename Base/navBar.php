@@ -94,10 +94,30 @@ if (realpath("./index.php")) {
 
 <!--        Btn fixed floating-->
 <div class="fixed-action-btn">
-    <a href="<?php echo $pontos ?>Tela/registroOrdem.php" class="btn-floating btn-large green tooltipped z-depth-5"
-       x="0" data-tooltip="Nova ordem">
-        <i class="large material-icons" style="font-size: 1.5625rem">add</i>
+    <a class="btn-floating btn-large corPadrao4 tooltipped  z-depth-5" x="0" data-tooltip="Ações">
+        <i class="large material-icons" style="font-size: 1.5625rem">expand_less</i>
     </a>
+    <ul>
+        <li>
+            <a href="<?php echo $pontos; ?>Tela/registroOrdem.php"
+               class="btn-floating yellow darken-3 tooltipped"
+               data-tooltip="Transferir">
+                <i class="material-icons">library_add</i>
+            </a>
+        </li>
+        <li>
+            <a href="<?php echo $pontos; ?>Tela/saida.php" class="btn-floating red tooltipped"
+               data-tooltip="Registrar saída">
+                <i class="material-icons">remove</i>
+            </a>
+        </li>
+        <li>
+            <a href="<?php echo $pontos; ?>Tela/entrada.php" class="btn-floating green tooltipped"
+               data-tooltip="Registrar entrada">
+                <i class="material-icons">add</i>
+            </a>
+        </li>
+    </ul>
 </div>
 
 <!--SidNavBar que deve se tornar padrão-->
@@ -339,7 +359,9 @@ if (realpath("./index.php")) {
     $('.sidenav').sidenav();
     $('.collapsible').collapsible();
     $('.modal').modal();
-
+    $('.fixed-action-btn').floatingActionButton({
+        hoverEnabled: false
+    });
     $('.dropdown-trigger').dropdown({
         coverTrigger: false
     });
