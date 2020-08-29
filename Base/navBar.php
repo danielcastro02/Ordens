@@ -27,22 +27,22 @@ if (realpath("./index.php")) {
         padding-left: 245px;
     }
 
-    html{
+    html {
         max-width: 100vw;
     }
 
-    @media only screen and (max-width: 992px){
+    @media only screen and (max-width: 992px) {
         header, main, footer, .preFooter {
             padding-left: 0px;
         }
     }
 
-    nav{
+    nav {
         background-color: rgba(6, 2, 43, 0.9) !important;
         transition: ease-in 0.2s;
     }
 
-    nav:hover{
+    nav:hover {
         background-color: rgba(6, 2, 43, 0.95) !important;
     }
 
@@ -68,17 +68,19 @@ if (realpath("./index.php")) {
         <ul class="right">
             <li>
                 <a href="#" class='dropdown-trigger black-text iconeFotoNav' data-target='dropPessoal'>
-                    <div class="left-align diviComFotoPerfil fotoPerfil" style="background-image: url('<?php echo $pontos?>Img/Perfil/default.png');">
+                    <div class="left-align diviComFotoPerfil fotoPerfil"
+                         style="background-image: url('<?php echo $pontos ?>Img/Perfil/default.png');">
                     </div>
                 </a>
                 <!--                    O dropdown referente-->
                 <ul id="dropPessoal" class="dropdown-content">
-                    <li><a href="<?php echo $pontos;?>Tela/perfil.php" class="black-text">Meu perfil</a></li>
-                    <li><a href="<?php echo $pontos;?>Tela/assinaturas.php" class="black-text">Minhas ordens</a></li>
+                    <li><a href="<?php echo $pontos; ?>Tela/perfil.php" class="black-text">Meu perfil</a></li>
+                    <li><a href="<?php echo $pontos; ?>Tela/assinaturas.php" class="black-text">Minhas ordens</a></li>
                     <!--                        li com o divider-->
                     <li class="divider" tabindex="-1"></li>
                     <li>
-                        <a class="waves-effect black-text" href="<?php echo $pontos ?>Controle/usuarioControle.php?function=logout">
+                        <a class="waves-effect black-text"
+                           href="<?php echo $pontos ?>Controle/usuarioControle.php?function=logout">
                             <i class="material-icons black-text" style="font-size: 1.5rem">power_settings_new</i>
                             Sair
                         </a>
@@ -92,7 +94,8 @@ if (realpath("./index.php")) {
 
 <!--        Btn fixed floating-->
 <div class="fixed-action-btn">
-    <a href="<?php echo $pontos?>Tela/registroOrdem.php" class="btn-floating btn-large green tooltipped z-depth-5" x="0" data-tooltip="Nova ordem">
+    <a href="<?php echo $pontos ?>Tela/registroOrdem.php" class="btn-floating btn-large green tooltipped z-depth-5"
+       x="0" data-tooltip="Nova ordem">
         <i class="large material-icons" style="font-size: 1.5625rem">add</i>
     </a>
 </div>
@@ -102,7 +105,8 @@ if (realpath("./index.php")) {
 <ul id="slide-out" class="sidenav sidenav-fixed">
     <li>
         <div style="background-color: #06022B; max-height: 45px;">
-<!--            <img class="iconAlvo" src="--><?php //echo $pontos ?><!--Img/Financeiramente-04-ALVO.svg">-->
+            <!--            <img class="iconAlvo" src="-->
+            <?php //echo $pontos ?><!--Img/Financeiramente-04-ALVO.svg">-->
             <span style="margin-left: 10px; font-size: 20px; color: white;">Ordens</b></span>
         </div>
     </li>
@@ -134,6 +138,8 @@ if (realpath("./index.php")) {
                     </ul>
                 </div>
             </li>
+
+
 
             <li>
                 <a class="waves-effect black-text collapsible-header anime" x="0" href="#!">
@@ -198,6 +204,84 @@ if (realpath("./index.php")) {
                 </div>
             </li>
 
+
+            <li>
+                <a class="waves-effect black-text collapsible-header anime" x="0" href="#!">
+                    <i class="material-icons changeColor" style="color: black; font-size: 1.5rem">list</i>
+                    Caixa
+                    <i class="large material-icons right animi black-text">arrow_drop_down</i>
+                </a>
+                <div class="collapsible-body bodyColorCollapsible">
+                    <ul>
+                        <li>
+                            <a href="<?php echo $pontos . 'Tela/entrada.php' ?>">
+                                <i class="material-icons icons-internos">arrow_right</i>
+                                Entrada
+                            </a>
+                        </li>
+                        <li>
+                            <a href="<?php echo $pontos . 'Tela/saida.php' ?>">
+                                <i class="material-icons icons-internos">arrow_right</i>
+                                Saída
+                            </a>
+                        </li>
+                        <li>
+                            <a href="<?php echo $pontos . 'Tela/novaDescricao.php' ?>">
+                                <i class="material-icons icons-internos">arrow_right</i>
+                                Nova Descrição
+                            </a>
+                        </li>
+                        <li>
+                            <a href="<?php echo $pontos . 'Tela/listarDescricao.php' ?>">
+                                <i class="material-icons icons-internos">arrow_right</i>
+                                Listar Descrição
+                            </a>
+                        </li>
+                        <li class="divider" style="margin-top: 0px;" tabindex="-1"></li>
+                    </ul>
+                </div>
+            </li>
+
+
+            <li>
+                <a class="waves-effect black-text collapsible-header anime" x="0" href="#!">
+                    <i class="material-icons changeColor" style="color: black; font-size: 1.5rem">list</i>
+                    Relatórios
+                    <i class="large material-icons right animi black-text">arrow_drop_down</i>
+                </a>
+                <div class="collapsible-body bodyColorCollapsible">
+                    <ul>
+                        <li>
+                            <a href="<?php echo $pontos . 'Tela/consultaRelatorio.php' ?>">
+                                <i class="material-icons icons-internos">arrow_right</i>
+                                Consultar Relatório
+                            </a>
+                        </li>
+                        <li>
+                            <a href="<?php echo $pontos . 'Tela/novoRelatorio.php' ?>">
+                                <i class="material-icons icons-internos">arrow_right</i>
+                                Novo Relarório
+                            </a>
+                        </li>
+                        <li>
+                            <a href="<?php echo $pontos . 'Tela/listarRelatorio.php' ?>">
+                                <i class="material-icons icons-internos">arrow_right</i>
+                                Listar Relatórios
+                            </a>
+                        </li>
+                        <li>
+                            <a href="<?php echo $pontos . 'Tela/resumoCaixa.php' ?>">
+                                <i class="material-icons icons-internos">arrow_right</i>
+                                Resumo de Caixa
+                            </a>
+                        </li>
+
+                        <li class="divider" style="margin-top: 0px;" tabindex="-1"></li>
+                    </ul>
+                </div>
+            </li>
+
+
             <li>
                 <a class="waves-effect black-text collapsible-header anime" x="0" href="#!">
                     <i class="material-icons giraEmudaCor" style="color: black; font-size: 1.5rem">settings</i>
@@ -216,7 +300,7 @@ if (realpath("./index.php")) {
 
                 <div class="collapsible-body bodyColorCollapsible">
                     <ul style="margin-left: 10px">
-                        <li style="height: 25px; line-height: 25px" >Projeto começado</li>
+                        <li style="height: 25px; line-height: 25px">Projeto começado</li>
                         <li style="height: 25px; line-height: 25px">dia 05/08/2020</li>
                     </ul>
                 </div>
@@ -245,7 +329,8 @@ if (realpath("./index.php")) {
     </div>
     <div class="modal-footer">
         <a href="#!" class="modal-close waves-effect waves-green btn corPadrao2">Cancelar</a>
-        <a href="<?php echo $pontos; ?>Controle/usuarioControle.php?function=logout&url=<?php echo $_SERVER["REQUEST_URI"]; ?>" class="btSair modal-close waves-effect waves-green btn red darken-2">Sair</a>
+        <a href="<?php echo $pontos; ?>Controle/usuarioControle.php?function=logout&url=<?php echo $_SERVER["REQUEST_URI"]; ?>"
+           class="btSair modal-close waves-effect waves-green btn red darken-2">Sair</a>
     </div>
 </div>
 

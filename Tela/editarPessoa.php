@@ -33,7 +33,7 @@ $cliente = new cliente($cliente->fetch());
                         <div class="row">
                             <div class="input-field col l5 s10 offset-s1">
                                 <input name="nome" id="nome" value="<?php echo $cliente->getNome() ?>" type="text">
-                                <input name="id_cliente" id="" type="text" value="<?php $cliente->getId_cliente() ?>" hidden>
+                                <input name="id_cliente" id="" type="text" value="<?php echo $cliente->getId_cliente() ?>" hidden>
                                 <label for="nome">Nome</label>
                             </div>
                             <div class="input-field col l4 s10 offset-s1">

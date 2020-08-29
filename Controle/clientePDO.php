@@ -35,11 +35,11 @@ class ClientePDO extends PDOBase
     {
         $cliente = new cliente($_POST);
         $pdo = conexao::getConexao();
-        $stmt = $pdo->prepare('update cliente set nome = :nome ,telefone = :tefone ,is_wats = :is_wats where id_cliente = :;');
-
+        $stmt = $pdo->prepare('update cliente set nome = :nome, telefone = :tefone, is_wats = :is_wats where id_cliente = :id_cliente');
         $stmt->bindValue(':nome', $cliente->getNome());
 
         $stmt->bindValue(':tefone', $cliente->getTelefone());
+        $stmt->bindValue(':id_cliente', $cliente->getId_cliente());
 
         $stmt->bindValue(':is_wats', (isset($_POST['is_wats']) ? "1" : "0"));
 
