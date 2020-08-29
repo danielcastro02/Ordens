@@ -84,11 +84,19 @@ include_once '../Base/navBar.php';
                 <div class="col m4 s12">
                     <div class="card col m12 s6 center" style="margin-bottom: 0.2rem;">
                         <span class="card-title">Entradas</span>
-                        <p class="bold" style="font-size: 20px;"><?php echo $movimentoPDO->countOperacao($_POST['id_relatorio'], "entrada") ?></p>
+                        <p class="bold" style="font-size: 20px;">
+                            <?php
+                            echo 'R$ ' . number_format($movimentoPDO->countOperacao($_POST['id_relatorio'], "entrada"), 2, '.', '');
+                            ?>
+                        </p>
                     </div>
                     <div class="card col m12 s6 center">
                         <span class="card-title">Saidas</span>
-                        <p class="bold" style="font-size: 20px;"><?php echo $movimentoPDO->countOperacao($_POST['id_relatorio'], "saida") ?></p>
+                        <p class="bold" style="font-size: 20px;">
+                            <?php
+                                echo 'R$ ' . number_format($movimentoPDO->countOperacao($_POST['id_relatorio'], "saida"), 2, '.', '');
+                                ?>
+                        </p>
                     </div>
                 </div>
             </div>

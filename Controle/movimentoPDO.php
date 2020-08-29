@@ -197,7 +197,7 @@ class MovimentoPDO extends PDOBase
     public  function  countOperacao($idMes, $operacao){
         $con = new conexao();
         $pdo = $con->getConexao();
-        $stmt = $pdo->prepare('SELECT count(id) as total from movimento WHERE id_mes = :id_mes AND operacao = :operacao');
+        $stmt = $pdo->prepare('SELECT sum(valor) as total from movimento WHERE id_mes = :id_mes AND operacao = :operacao');
         $stmt->bindValue(':id_mes', $idMes);
         $stmt->bindValue(':operacao', $operacao);
         $stmt->execute();
