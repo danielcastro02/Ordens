@@ -19,13 +19,19 @@ if(!$parametros->isContasPublicas()) {
     $movimentoPDO = new MovimentoPDO();
     include_once '../Base/header.php';
     ?>
+    <style>
+        td, th {
+            padding: 15px 15px !important;
+        }
+    </style>
 <body class="homeimg">
 <?php
 include_once '../Base/navBar.php';
 ?>
+
 <main>
     <div class="row">
-        <div class=" col s12">
+        <div class="col m10 offset-m1 s12">
             <h4 class="textoCorPadrao2 center">Relatórios Mensais</h4>
             <div class="row">
                 <form action="./consultaRelatorio.php" method="post" name="relatorio" id="relatorio" class="col s12">
@@ -51,6 +57,50 @@ include_once '../Base/navBar.php';
                     </div>
                 </form>
             </div>
+            <div class="row">
+                <div class="col m8 s12">
+                    <div class="card col s12 cardPrincipal" style="padding: 5px 5px 10px; margin-bottom: 0.2rem;">
+                        <?php
+                        $atual = $relatorioPDO->selectRelatorio_mensalId($_POST['id_relatorio']);
+                        $atual = new relatorio_mensal($atual->fetch());
+                        echo "<h5>Relatório: " . $atual->getMes() . " de " . $atual->getAno() . "</h5>"
+                        ?>
+
+                        <h5>Saldo inicial: <?php
+                            $anterior = $relatorioPDO->selectRelatorio_mensalId($atual->getAnterior());
+                            $anterior = new relatorio_mensal($anterior->fetch());
+                            echo 'R$ ' . $anterior->getSaldofinal();
+                            ?></h5>
+
+                        <div class="marginBtn">
+                            <a class="btn corPadrao2"
+                               href="./graficoLinha.php?id_mes=<?php echo $atual->getId() ?>">Ver
+                                gráfico de linhas</a>
+                            <a class="btn corPadrao2"
+                               href="./imprimirRelatorio.php?id_relatorio=<?php echo $atual->getId() ?>">Imprimir</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col m4 s12">
+                    <div class="card col m12 s6 center" style="margin-bottom: 0.2rem;">
+                        <span class="card-title">Entradas</span>
+                        <p class="bold" style="font-size: 20px;">
+                            <?php
+                            echo 'R$ ' . number_format($movimentoPDO->countOperacao($_POST['id_relatorio'], "entrada"), 2, '.', '');
+                            ?>
+                        </p>
+                    </div>
+                    <div class="card col m12 s6 center">
+                        <span class="card-title">Saidas</span>
+                        <p class="bold" style="font-size: 20px;">
+                            <?php
+                                echo 'R$ ' . number_format($movimentoPDO->countOperacao($_POST['id_relatorio'], "saida"), 2, '.', '');
+                                ?>
+                        </p>
+                    </div>
+                </div>
+            </div>
+
             <div class="row hide-on-med-and-down">
                 <?php
                 if (isset($_POST['id_relatorio'])) {
@@ -58,31 +108,16 @@ include_once '../Base/navBar.php';
                     $stmt = $movimentoPDO->selectMovimentoId_mes($_POST['id_relatorio']);
                     if ($stmt) {
                         ?>
-                        <table class="bordered striped col s12 white"><?php
-                            $atual = $relatorioPDO->selectRelatorio_mensalId($_POST['id_relatorio']);
-                            $atual = new relatorio_mensal($atual->fetch());
-                            echo "<h5>Relatório: " . $atual->getMes() . " " . $atual->getAno() . "</h5>"
-                            ?>
-                            <div class="row;">
-                                <h5>Saldo inicial: <?php
-                                    $anterior = $relatorioPDO->selectRelatorio_mensalId($atual->getAnterior());
-                                    $anterior = new relatorio_mensal($anterior->fetch());
-                                    echo 'R$ ' . $anterior->getSaldofinal();
-                                    ?></h5>
-                                <a class="btn corPadrao2"
-                                   href="./graficoLinha.php?id_mes=<?php echo $atual->getId() ?>">Ver
-                                    gráfico de linhas</a>
-                                <a class="btn corPadrao2"
-                                   href="./imprimirRelatorio.php?id_relatorio=<?php echo $atual->getId() ?>">Imprimir</a>
-                            </div>
+
+                        <table class="bordered striped col s12 white">
                             <thead>
                             <tr>
-                                <th>Dia</th>
+                                <th class="center" style="width: 60px">Dia</th>
                                 <th>Entrada</th>
                                 <th>Saida</th>
                                 <th>Saldo</th>
                                 <th>Descrição</th>
-                                <th>Anexo</th>
+                                <th class="center" style="width: 60px">Anexo</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -93,7 +128,7 @@ include_once '../Base/navBar.php';
                                 ?>
 
                                 <tr>
-                                    <td><?php echo $movimento->getData() ?></td>
+                                    <td class="center"><?php echo $movimento->getData() ?></td>
                                     <?php
                                     if ($movimento->getOperacao() == 'entrada') {
                                         echo "<td>" . 'R$ ' . $movimento->getValor() . "</td><td></td>";
@@ -127,7 +162,14 @@ include_once '../Base/navBar.php';
                             }
                             ?> </tbody>
                         </table>
-                        <h5>Saldo final: <?php echo 'R$ ' . number_format($valor, 2, '.', ''); ?></h5><?php
+                        <div class="row">
+                            <div class="col s12">
+                                <div class="card" style="padding: 1px 10px; border-radius: 4px">
+                                    <h5>Saldo final: <?php echo 'R$ ' . number_format($valor, 2, '.', ''); ?></h5>
+                                </div>
+                            </div>
+                        </div>
+                        <?php
                     } else {
                         echo 'Nenhum movimento';
                     }
@@ -137,30 +179,15 @@ include_once '../Base/navBar.php';
 
 
             <div class="row hide-on-large-only">
+                <div class="col s12">
                 <?php
                 if (isset($_POST['id_relatorio'])) {
                     $movimentoPDO = new MovimentoPDO();
                     $stmt = $movimentoPDO->selectMovimentoId_mes($_POST['id_relatorio']);
                     if ($stmt) {
                         ?>
-                        <?php
-                            $atual = $relatorioPDO->selectRelatorio_mensalId($_POST['id_relatorio']);
-                            $atual = new relatorio_mensal($atual->fetch());
-                            echo "<h5>Relatório: " . $atual->getMes() . " " . $atual->getAno() . "</h5>"
-                            ?>
-                            <div class="row" style="max-width: 100%">
-                                <h5 style="margin-left: 11px">Saldo inicial: <?php
-                                    $anterior = $relatorioPDO->selectRelatorio_mensalId($atual->getAnterior());
-                                    $anterior = new relatorio_mensal($anterior->fetch());
-                                    echo 'R$ ' . $anterior->getSaldofinal();
-                                    ?></h5>
-                                <a class="btn corPadrao2"
-                                   href="./graficoLinha.php?id_mes=<?php echo $atual->getId() ?>">Ver
-                                    gráfico de linhas</a>
-                                <a class="btn corPadrao2"
-                                   href="./imprimirRelatorio.php?id_relatorio=<?php echo $atual->getId() ?>">Imprimir</a>
-                            </div>
-                        <ul class="col s12 collapsible">
+
+                        <ul class="collapsible no-padding">
                             <?php
                             $valor = $anterior->getSaldofinal();
                             while ($linha = $stmt->fetch()) {
@@ -171,15 +198,15 @@ include_once '../Base/navBar.php';
                                     <div class="collapsible-header">Dia <?php echo $movimento->getData() ?>
                                     <?php
                                     if ($movimento->getOperacao() == 'entrada') {
-                                        echo "" . '- Entrada -R$ ' . $movimento->getValor();
+                                        echo "" . '- Entrada: R$ ' . $movimento->getValor();
                                         $valor = $valor + $movimento->getValor();
                                     } else {
-                                        echo '- Saída -R$ ' . ($movimento->getValor());
+                                        echo '- Saída: R$ ' . ($movimento->getValor());
                                         $valor = $valor - $movimento->getValor();
                                     }
                                     ?>
-                                    <?php echo 'Saldo - R$ ' . number_format($valor, 2, '.', ''); ?></div>
-                                    <div class="collapsible-body"><?php echo $movimento->getDescricao(); ?>
+                                    <?php echo ' - Saldo: R$ ' . number_format($valor, 2, '.', ''); ?></div>
+                                    <div class="collapsible-body grey lighten-3"><?php echo $movimento->getDescricao(); ?>
                                     <?php
                                     include_once "../Controle/anexoPDO.php";
                                     include_once "../Modelo/Anexo.php";
@@ -202,12 +229,20 @@ include_once '../Base/navBar.php';
                             }
                             ?>
                         </ul>
-                        <h5>Saldo final: <?php echo 'R$ ' . number_format($valor, 2, '.', ''); ?></h5><?php
+                        <div class="row">
+                            <div class="col s12">
+                                <div class="card" style="padding: 1px 10px; border-radius: 4px">
+                                    <h5>Saldo final: <?php echo 'R$ ' . number_format($valor, 2, '.', ''); ?></h5>
+                                </div>
+                            </div>
+                        </div>
+                        <?php
                     } else {
                         echo 'Nenhum movimento';
                     }
                 }
                 ?>
+            </div>
             </div>
 
         </div>

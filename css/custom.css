@@ -750,6 +750,22 @@ span.badge.new:after {
 }
 
 
+.cardPrincipal {
+    height: 223.8px
+}
+
+.marginBtn{
+    margin-top: 70px;
+}
+@media only screen and (max-width: 600px) {
+    .cardPrincipal{
+        height: auto;
+    }.marginBtn{
+         margin-top: auto;
+     }
+}
+
+
 /*.sidenav .bodyColorCollapsible{*/
 /*    background-color: rgba(96, 122, 174, 0.2) !important;*/
 /*}*/
