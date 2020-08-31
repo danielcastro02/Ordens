@@ -1,7 +1,7 @@
 <?php
 include_once "../Modelo/Parametros.php";
 $parametros = new Parametros();
-if(!$parametros->isContasPublicas()) {
+if (!$parametros->isContasPublicas()) {
     include_once '../Base/requerLogin.php';
 }
 ?>
@@ -57,58 +57,59 @@ include_once '../Base/navBar.php';
                     </div>
                 </form>
             </div>
-            <div class="row">
-                <div class="col m8 s12">
-                    <div class="card col s12 cardPrincipal" style="padding: 5px 5px 10px; margin-bottom: 0.2rem;">
-                        <?php
-                        $atual = $relatorioPDO->selectRelatorio_mensalId($_POST['id_relatorio']);
-                        $atual = new relatorio_mensal($atual->fetch());
-                        echo "<h5>Relatório: " . $atual->getMes() . " de " . $atual->getAno() . "</h5>"
-                        ?>
+            <?php
+            if (isset($_POST['id_relatorio'])) {
+                ?>
+                <div class="row">
+                    <div class="col m8 s12">
+                        <div class="card col s12 cardPrincipal" style="padding: 5px 5px 10px; margin-bottom: 0.2rem;">
+                            <?php
+                            $atual = $relatorioPDO->selectRelatorio_mensalId($_POST['id_relatorio']);
+                            $atual = new relatorio_mensal($atual->fetch());
+                            echo "<h5>Relatório: " . $atual->getMes() . " de " . $atual->getAno() . "</h5>"
+                            ?>
 
-                        <h5>Saldo inicial: <?php
-                            $anterior = $relatorioPDO->selectRelatorio_mensalId($atual->getAnterior());
-                            $anterior = new relatorio_mensal($anterior->fetch());
-                            echo 'R$ ' . $anterior->getSaldofinal();
-                            ?></h5>
+                            <h5>Saldo inicial: <?php
+                                $anterior = $relatorioPDO->selectRelatorio_mensalId($atual->getAnterior());
+                                $anterior = new relatorio_mensal($anterior->fetch());
+                                echo 'R$ ' . $anterior->getSaldofinal();
+                                ?></h5>
 
-                        <div class="marginBtn">
-                            <a class="btn corPadrao2"
-                               href="./graficoLinha.php?id_mes=<?php echo $atual->getId() ?>">Ver
-                                gráfico de linhas</a>
-                            <a class="btn corPadrao2"
-                               href="./imprimirRelatorio.php?id_relatorio=<?php echo $atual->getId() ?>">Imprimir</a>
+                            <div class="marginBtn">
+                                <a class="btn corPadrao2"
+                                   href="./graficoLinha.php?id_mes=<?php echo $atual->getId() ?>">Ver
+                                    gráfico de linhas</a>
+                                <a class="btn corPadrao2"
+                                   href="./imprimirRelatorio.php?id_relatorio=<?php echo $atual->getId() ?>">Imprimir</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col m4 s12">
+                        <div class="card col m12 s6 center" style="margin-bottom: 0.2rem;">
+                            <span class="card-title">Entradas</span>
+                            <p class="bold" style="font-size: 20px;">
+                                <?php
+                                echo 'R$ ' . number_format($movimentoPDO->countOperacao($_POST['id_relatorio'], "entrada"), 2, '.', '');
+                                ?>
+                            </p>
+                        </div>
+                        <div class="card col m12 s6 center">
+                            <span class="card-title">Saidas</span>
+                            <p class="bold" style="font-size: 20px;">
+                                <?php
+                                echo 'R$ ' . number_format($movimentoPDO->countOperacao($_POST['id_relatorio'], "saida"), 2, '.', '');
+                                ?>
+                            </p>
                         </div>
                     </div>
                 </div>
-                <div class="col m4 s12">
-                    <div class="card col m12 s6 center" style="margin-bottom: 0.2rem;">
-                        <span class="card-title">Entradas</span>
-                        <p class="bold" style="font-size: 20px;">
-                            <?php
-                            echo 'R$ ' . number_format($movimentoPDO->countOperacao($_POST['id_relatorio'], "entrada"), 2, '.', '');
-                            ?>
-                        </p>
-                    </div>
-                    <div class="card col m12 s6 center">
-                        <span class="card-title">Saidas</span>
-                        <p class="bold" style="font-size: 20px;">
-                            <?php
-                                echo 'R$ ' . number_format($movimentoPDO->countOperacao($_POST['id_relatorio'], "saida"), 2, '.', '');
-                                ?>
-                        </p>
-                    </div>
-                </div>
-            </div>
 
-            <div class="row hide-on-med-and-down">
-                <?php
-                if (isset($_POST['id_relatorio'])) {
+                <div class="row hide-on-med-and-down">
+                    <?php
                     $movimentoPDO = new MovimentoPDO();
                     $stmt = $movimentoPDO->selectMovimentoId_mes($_POST['id_relatorio']);
                     if ($stmt) {
                         ?>
-
                         <table class="bordered striped col s12 white">
                             <thead>
                             <tr>
@@ -149,7 +150,7 @@ include_once '../Base/navBar.php';
                                         ?>
                                         <td><a href="..<?php echo $anexo->getCaminho(); ?>">Anexo</a></td>
                                         <?php
-                                    }else{
+                                    } else {
                                         ?>
                                         <td>--</td>
                                         <?php
@@ -173,82 +174,77 @@ include_once '../Base/navBar.php';
                     } else {
                         echo 'Nenhum movimento';
                     }
-                }
-                ?>
-            </div>
+                    ?>
+                </div>
 
-
-            <div class="row hide-on-large-only">
-                <div class="col s12">
-                <?php
-                if (isset($_POST['id_relatorio'])) {
-                    $movimentoPDO = new MovimentoPDO();
-                    $stmt = $movimentoPDO->selectMovimentoId_mes($_POST['id_relatorio']);
-                    if ($stmt) {
-                        ?>
-
-                        <ul class="collapsible no-padding">
-                            <?php
-                            $valor = $anterior->getSaldofinal();
-                            while ($linha = $stmt->fetch()) {
-                                $movimento = new movimento($linha);
-                                ?>
-
-                                <li>
-                                    <div class="collapsible-header">Dia <?php echo $movimento->getData() ?>
-                                    <?php
-                                    if ($movimento->getOperacao() == 'entrada') {
-                                        echo "" . '- Entrada: R$ ' . $movimento->getValor();
-                                        $valor = $valor + $movimento->getValor();
-                                    } else {
-                                        echo '- Saída: R$ ' . ($movimento->getValor());
-                                        $valor = $valor - $movimento->getValor();
-                                    }
-                                    ?>
-                                    <?php echo ' - Saldo: R$ ' . number_format($valor, 2, '.', ''); ?></div>
-                                    <div class="collapsible-body grey lighten-3"><?php echo $movimento->getDescricao(); ?>
-                                    <?php
-                                    include_once "../Controle/anexoPDO.php";
-                                    include_once "../Modelo/Anexo.php";
-                                    $anexoPDO = new AnexoPDO();
-                                    $anexo = $anexoPDO->selectAnexoIdMovimento($movimento->getId());
-                                    if ($anexo) {
-                                        ?>
-                                        <a href="..<?php echo $anexo->getCaminho(); ?>">Anexo</a></div>
-                                        <?php
-                                    }else{
-                                        ?>
-                                       --</div>
-                                        <?php
-                                    }
-                                    ?>
-                                </li>
-
-
-                                <?php
-                            }
+                <div class="row hide-on-large-only">
+                    <div class="col s12">
+                        <?php
+                        $movimentoPDO = new MovimentoPDO();
+                        $stmt = $movimentoPDO->selectMovimentoId_mes($_POST['id_relatorio']);
+                        if ($stmt) {
                             ?>
-                        </ul>
-                        <div class="row">
-                            <div class="col s12">
-                                <div class="card" style="padding: 1px 10px; border-radius: 4px">
-                                    <h5>Saldo final: <?php echo 'R$ ' . number_format($valor, 2, '.', ''); ?></h5>
+
+                            <ul class="collapsible no-padding">
+                                <?php
+                                $valor = $anterior->getSaldofinal();
+                                while ($linha = $stmt->fetch()) {
+                                    $movimento = new movimento($linha);
+                                    ?>
+                                    <li>
+                                        <div class="collapsible-header">Dia <?php echo $movimento->getData() ?>
+                                            <?php
+                                            if ($movimento->getOperacao() == 'entrada') {
+                                                echo "" . '- Entrada: R$ ' . $movimento->getValor();
+                                                $valor = $valor + $movimento->getValor();
+                                            } else {
+                                                echo '- Saída: R$ ' . ($movimento->getValor());
+                                                $valor = $valor - $movimento->getValor();
+                                            }
+                                            ?>
+                                            <?php echo ' - Saldo: R$ ' . number_format($valor, 2, '.', ''); ?></div>
+                                        <div class="collapsible-body grey lighten-3"><?php echo $movimento->getDescricao(); ?>
+                                            <?php
+                                            include_once "../Controle/anexoPDO.php";
+                                            include_once "../Modelo/Anexo.php";
+                                            $anexoPDO = new AnexoPDO();
+                                            $anexo = $anexoPDO->selectAnexoIdMovimento($movimento->getId());
+                                            if ($anexo) {
+                                                ?>
+                                                <a href="..<?php echo $anexo->getCaminho(); ?>">Anexo</a>
+                                                <?php
+                                            } else {
+                                                ?>
+                                                --
+
+                                                <?php
+                                            }
+                                            ?>
+                                        </div>
+                                    </li>
+                                    <?php
+                                }
+                                ?>
+                            </ul>
+                            <div class="row">
+                                <div class="col s12">
+                                    <div class="card" style="padding: 1px 10px; border-radius: 4px">
+                                        <h5>Saldo final: <?php echo 'R$ ' . number_format($valor, 2, '.', ''); ?></h5>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <?php
-                    } else {
-                        echo 'Nenhum movimento';
-                    }
-                }
-                ?>
-            </div>
-            </div>
-
+                            <?php
+                        } else {
+                            echo 'Nenhum movimento';
+                        }
+                        ?>
+                    </div>
+                </div>
+                <?php
+            }
+            ?>
         </div>
     </div>
-    </div>
-
 </main>
 <?php
 include_once '../Base/footer.php';
