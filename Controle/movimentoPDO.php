@@ -39,7 +39,7 @@ class MovimentoPDO extends PDOBase
                 $anexo->setIdMovimento($pdo->lastInsertId("id"));
                 $anexoPDO->inserirAnexo($anexo);
             }
-            if ($movimento->getOperacao() >0) {
+            if ($movimento->getOperacao() == "entrada") {
                 $this->addToast("Entrada Registrada!");
                 header('location: ../Tela/entrada.php?msg=movimentoInserido');
             } else {
