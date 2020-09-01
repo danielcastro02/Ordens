@@ -77,7 +77,7 @@ $ordemPDO = new OrdemPDO();
                                 <a href="#!" x="<?php echo $ordem->getId_ordem()?>" class="abrirDescricao black-text"><i class="material-icons">more_vert</i></a>
                             </div>
                             <div class="divWraper col infoPrincipal" x="<?php echo $ordem->getId_ordem()?>">
-                                <span class="title">Clinte: <?php echo $cliente->getNome() ?></span>
+                                <span class="title">Cliente: <?php echo $cliente->getNome() ?></span>
                                 <p>Chegou: <?php echo $ordem->getDataChegadaFormated()?>
                                     <br class="hide-on-med-and-up"/>
                                     Saiu: <?php echo $ordem->getEntregaFormated() ?>

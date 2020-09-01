@@ -78,7 +78,7 @@ $ordemPDO = new OrdemPDO();
                     }
                 } else {?>
                     <div class="card-title center" style="padding-top: 8px">
-                        Nenhum Clinte cdastrado
+                        Nenhum Cliente cdastrado
 
                         <div class="row col s12">
                             <a href="<?php echo $pontos . 'Tela/registroCliente.php' ?>" class="black-text col offset-s4 s4">
