@@ -62,14 +62,14 @@ class MovimentoPDO extends PDOBase
 
     public function selectRetiradasDaniel($id_mes){
         $pdo = conexao::getConexao();
-        $stmt = $pdo->prepare("select sum(valor) as soma from movimento where id_mes = :id_mes and descricao = 'Retirada Daniel'");
+        $stmt = $pdo->prepare("select sum(valor) as soma from movimento where id_mes = :id_mes and descricao like '%ada Dan%'");
         $stmt->bindValue(":id_mes" , $id_mes);
         $stmt->execute();
         return $stmt->fetch()["soma"];
     }
     public function selectRetiradasFrancisco($id_mes){
         $pdo = conexao::getConexao();
-        $stmt = $pdo->prepare("select sum(valor) as soma from movimento where id_mes = :id_mes and descricao = 'Retirada Francisco'");
+        $stmt = $pdo->prepare("select sum(valor) as soma from movimento where id_mes = :id_mes and descricao like '%ada Fran%'");
         $stmt->bindValue(":id_mes" , $id_mes);
         $stmt->execute();
         return $stmt->fetch()["soma"];
